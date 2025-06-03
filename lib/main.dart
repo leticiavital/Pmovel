@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:infoclin_913/HomePageInfoclin.dart';
-
+import 'home_page.dart';
 
 
 void main() {
-  runApp(
-      MaterialApp(
-        home:HomePageInfoclin(),
-      )
-  );
-}
+  runApp(MaterialApp(
+    home: infoclinHomePage(),
+  ),
+  );}
