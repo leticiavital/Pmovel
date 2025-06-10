@@ -30,17 +30,16 @@ class infoclinHomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              Container(//padrão da caixa(enfermaria)
                 width: MediaQuery.of(context).size.width * 0.6,
                 height: 50,
                 decoration: BoxDecoration(
                   color: Color(0xFF87CEEB),
                   borderRadius: BorderRadius.circular(25),
                 ),
-                child: Center(
+                child: Center(//caixa da enfermaria
                   child: Text(
                     'ENFERMARIA',
                     style: TextStyle(
@@ -54,9 +53,8 @@ class infoclinHomePage extends StatelessWidget {
               ),
               SizedBox(height: 12),
 
-
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10 , vertical:5),
                 child: Text(
                   'BASEANDO-SE NOS SINTOMAS INFORMADOS, TEMOS OS SEGUINTES CÂNCERES.',
                   textAlign: TextAlign.center,
@@ -68,14 +66,14 @@ class infoclinHomePage extends StatelessWidget {
                   ),
                 ),
               ),
+
               Image.asset(
-                'assets/infoclin.png',
-                width:3000,
-                height: 150,
+                'assets/simbolo.png', width:90,
+                height: 90,
               ),
 
 
-              Container(
+              Container(// padrao das outras caixas
                 width: MediaQuery.of(context).size.width * 0.85,
                 decoration: BoxDecoration(
                   color: Color(0xFFE3F2FD),
@@ -95,9 +93,7 @@ class infoclinHomePage extends StatelessWidget {
                 ),
               ),
 
-
               SizedBox(height: 12),
-
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
@@ -113,9 +109,7 @@ class infoclinHomePage extends StatelessWidget {
                 ),
               ),
 
-
               SizedBox(height: 12),
-
 
               Container(
                 width: MediaQuery.of(context).size.width * 0.85,
@@ -183,36 +177,10 @@ class infoclinHomePage extends StatelessWidget {
               ),
 
               SizedBox(height: 12),
-              // meu icone
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.blue[100],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.blue[700],
-                      size: 24,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.orange[100],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Icon(
-                      Icons.warning,
-                      color: Colors.orange[700],
-                      size: 24,
-                    ),
-                  ),
-                ],
+              Image.asset(
+                'assets/cancer.png',
+                width:55,
+                height: 55,
               ),
               SizedBox(height: 12),
 
@@ -234,7 +202,7 @@ class infoclinHomePage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
+    ;
   }
 }
