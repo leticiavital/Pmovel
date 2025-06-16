@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:infoclin_913/HomePageInfoclin.dart';
-
+import 'package:infoclin2/uti_page.dart';
 
 
 void main() {
-  runApp(MaterialApp(
-    home: infoclinHomePage(),
-  ),
-  );}
+  runApp(
+    MaterialApp(
+        home: UTI_page()
+    ),
+  );
+}
