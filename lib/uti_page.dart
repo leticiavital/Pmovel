@@ -22,7 +22,7 @@ class _UTI_page extends State<UTI_page> {
               margin: EdgeInsets.all(42.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Colors.purple,
+                color: Color(0xFF7cb2d6),
               ),
               child: Center(
                 child: Text('UTI',
@@ -71,6 +71,10 @@ class _UTI_page extends State<UTI_page> {
                       ),
                       DropdownMenuItem(
                         child: Text('MG'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('AM'),
                         value: ('ESTADO'),
                       )
                     ],
