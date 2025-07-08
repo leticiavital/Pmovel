@@ -22,7 +22,7 @@ class _UTI_page extends State<UTI_page> {
               margin: EdgeInsets.all(42.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Colors.pinkAccent,
+                color: Colors.purple,
               ),
               child: Center(
                 child: Text('UTI',
