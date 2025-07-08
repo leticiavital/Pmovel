@@ -80,6 +80,10 @@ class _UTI_page extends State<UTI_page> {
                       DropdownMenuItem(
                         child: Text('SE'),
                         value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('TO'),
+                        value: ('ESTADO'),
                       )
                     ],
                     onChanged: (value) {}),
