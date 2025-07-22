@@ -52,7 +52,7 @@ class _UTI_page extends State<UTI_page> {
                         'Encontrar um Oncologista perto de mim',
                         maxLines: 2,
                         style: GoogleFonts.cairo(
-                            fontSize: 17, fontWeight: FontWeight.w700),
+                            fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
@@ -66,7 +66,46 @@ class _UTI_page extends State<UTI_page> {
                     hint: Text('ESTADO'),
                     items: const [
                       DropdownMenuItem(
+                        child: Text('AC'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
                         child: Text('AL'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('AP'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('AM'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('BA'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('CE'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('ES'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('GO'),
+                        value: ('ESTADO'),
+                      ),DropdownMenuItem(
+                        child: Text('MA'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('MT'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('MS'),
                         value: ('ESTADO'),
                       ),
                       DropdownMenuItem(
@@ -74,7 +113,47 @@ class _UTI_page extends State<UTI_page> {
                         value: ('ESTADO'),
                       ),
                       DropdownMenuItem(
-                        child: Text('AM'),
+                        child: Text('PA'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('PB'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('PR'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('PE'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('PI'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('RJ'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('RN'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('RS'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('RO'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('RR'),
+                        value: ('ESTADO'),
+                      ),
+                      DropdownMenuItem(
+                        child: Text('SC'),
                         value: ('ESTADO'),
                       ),
                       DropdownMenuItem(
@@ -84,7 +163,11 @@ class _UTI_page extends State<UTI_page> {
                       DropdownMenuItem(
                         child: Text('TO'),
                         value: ('ESTADO'),
-                      )
+                      ),
+                      DropdownMenuItem(
+                        child: Text('DF'),
+                        value: ('ESTADO'),
+                      ),
                     ],
                     onChanged: (value) {}),
 
@@ -97,6 +180,10 @@ class _UTI_page extends State<UTI_page> {
                         ),
                         DropdownMenuItem(
                           child: Text('NEUROLOGIA'),
+                          value: ('ESPECIALIDADE'),
+                        ),
+                        DropdownMenuItem(
+                          child: Text('PEDIATRA'),
                           value: ('ESPECIALIDADE'),
                         ),
                       ],
