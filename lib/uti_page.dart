@@ -96,7 +96,8 @@ class _UTI_page extends State<UTI_page> {
                       DropdownMenuItem(
                         child: Text('GO'),
                         value: ('ESTADO'),
-                      ),DropdownMenuItem(
+                      ),
+                      DropdownMenuItem(
                         child: Text('MA'),
                         value: ('ESTADO'),
                       ),
@@ -186,6 +187,14 @@ class _UTI_page extends State<UTI_page> {
                           child: Text('PEDIATRA'),
                           value: ('ESPECIALIDADE'),
                         ),
+                        DropdownMenuItem(
+                          child: Text('OFTAMOLOGIA'),
+                          value: ('ESPECIALIDADE'),
+                        ),
+                        DropdownMenuItem(
+                          child: Text(''),
+                          value: ('ESPECIALIDADE'),
+                        ),
                       ],
                       onChanged: (value) {}),
               ],
@@ -194,25 +203,49 @@ class _UTI_page extends State<UTI_page> {
               children: [
                 Container(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 30.0),
+                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                   margin: EdgeInsets.all(10.0),
                   child: Image.asset(
                     'assets/medico2.png',
-                    width: 80,
+                    width: 110,
                   ),
                 ),
                 Expanded(
                   child: Text(
-                    'Doutor Rafael Melo, Especialista em Neurologia',
-                    maxLines: 3,
+                    'Alagoas, Neurologia - Doutor Rafael',
+                    maxLines: 2,
                     style: GoogleFonts.cairo(
-                      fontSize: 20,
+                      fontSize: 22,
                     ),
                   ),
-                )
+                ),
+    ],
+    ),
+                Container(
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                  margin: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF7cb2d6),
+                    borderRadius: BorderRadius.circular(20.0)
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("INFORMAÇÕES PARA CONTATO:",
+                      style: GoogleFonts.cairo(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.white
+                      ),
+                      ),
+                      Text("Email: "),
+                      Text("Telefone: (82) 9-"),
+
+                    ],
+                  ),
+                ),
               ],
-            )
-          ],
         ),
       ),
     );
