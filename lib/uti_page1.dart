@@ -199,27 +199,31 @@ class _UTI_page1 extends State<UTI_page1> {
                     onChanged: (value) {}),
                 ],
             ),
+            Expanded(
+                child:
             ElevatedButton(onPressed: (){}, 
                 child: Text("Pesquisar"))
-            ],
-        ),
             ),
-        );
+            ],
+    ),
+        ),
+    );
   }
 }
 
 buildAppBar() {
   return AppBar(
-    actions: [
+    leading:
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         icon: Icon(
-          Icons.home,
+          Icons.arrow_back_ios,
           color: Colors.white,
           size: 40,
         ),
       ),
-    ],
     toolbarHeight: 140,
     centerTitle: true,
     title: Text(
