@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infoclin2/db/medicos_dao.dart';
 
 class UTI_page1 extends StatefulWidget {
   const UTI_page1({super.key});
@@ -9,7 +10,20 @@ class UTI_page1 extends StatefulWidget {
 }
 
 class _UTI_page1 extends State<UTI_page1> {
+
+  List listaPropriedades = [];
+
   @override
+  void initState() {
+    super.initState();
+    //loadData();
+  }
+
+  /*loadData() async {
+    listaPropriedades = await MedicosDao().listarMedicos();
+    setState(() {});
+  }*/
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -201,6 +215,7 @@ class _UTI_page1 extends State<UTI_page1> {
             ),
             ElevatedButton(onPressed: (){
 
+
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white, backgroundColor: Color(0xFF7cb2d6),
@@ -210,7 +225,7 @@ class _UTI_page1 extends State<UTI_page1> {
             ),
             ],
     ),
-        ),
+    ),
     );
   }
 }

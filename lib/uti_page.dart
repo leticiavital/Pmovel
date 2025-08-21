@@ -239,9 +239,7 @@ class _UTI_page extends State<UTI_page> {
                         color: Colors.white
                       ),
                       ),
-                      Text("Email: "),
-                      Text("Telefone: (82) 9-"),
-
+                      Text("Email: ")
                     ],
                   ),
                 ),
