@@ -199,10 +199,8 @@ class _UTI_page1 extends State<UTI_page1> {
                     onChanged: (value) {}),
                 ],
             ),
-            Expanded(
-                child:
             ElevatedButton(onPressed: (){}, 
-                child: Text("Pesquisar"))
+                child: Text("Pesquisar"),
             ),
             ],
     ),
@@ -215,9 +213,7 @@ buildAppBar() {
   return AppBar(
     leading:
       IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        onPressed: () {},
         icon: Icon(
           Icons.arrow_back_ios,
           color: Colors.white,
