@@ -73,26 +73,6 @@ class infoclinHomePage extends StatelessWidget {
             ),
 
 
-            Container(// padrao das outras caixas
-              width: MediaQuery.of(context).size.width * 0.85,
-              decoration: BoxDecoration(
-                color: Color(0xFFE3F2FD),
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Color(0xFF87CEEB), width: 3),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-              child: Text(
-                'PROVÁVEIS CÂNCERES\nRELACIONADOS',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  height: 1.2,
-                ),
-              ),
-            ),
-
             SizedBox(height: 12),
 
             Padding(
