@@ -215,9 +215,7 @@ buildAppBar() {
   return AppBar(
     leading:
       IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        onPressed: () {},
         icon: Icon(
           Icons.arrow_back_ios,
           color: Colors.white,
