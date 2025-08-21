@@ -204,6 +204,7 @@ class _UTI_page1 extends State<UTI_page1> {
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white, backgroundColor: Color(0xFF7cb2d6),
+
             ),
                 child: Text("Pesquisar"),
             ),
