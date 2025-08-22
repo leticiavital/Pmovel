@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:triagem/TriagemPage.dart';
+
+import 'TriagemPage.dart';
 
 void main() {
   runApp(

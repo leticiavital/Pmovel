@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:triagem/dbTriagem/dbTriagem.dart';
 
 import '../Domain/triagem.dart';
+import 'dbTriagem.dart';
 
 class TriagemDao {
   Future<List<Triagem>> listarTriagem() async {
