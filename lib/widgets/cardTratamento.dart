@@ -26,7 +26,7 @@ class CardTratamento extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              "Tipo: ${tratamento.indicacaoTratamento}",
+              "Indicação: ${tratamento.indicacaoTratamento}",
               style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
             ),
             const SizedBox(height: 8),

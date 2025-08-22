@@ -77,7 +77,7 @@ class DBHelper {
      ('Tosse Persistente', 'Tosse que dura mais de 3 semanas', 'Alta'),
       ('Dor ao Urinar', 'Desconforto ou queimação', 'Média'),
     ('Lesões na Pele', 'Feridas que não cicatrizam', 'Média'),
-     ('Sangue nas Fezes', 'Presença de sangue visível ou oculto', 'Alta'),
+     ('Sangue nas Fezes', 'Presença de sangue visível ou oculto', 'Alta');
    
   ''';
       await db.execute(sql);
