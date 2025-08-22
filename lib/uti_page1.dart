@@ -11,18 +11,6 @@ class UTI_page1 extends StatefulWidget {
 
 class _UTI_page1 extends State<UTI_page1> {
 
-  List listaPropriedades = [];
-
-  @override
-  void initState() {
-    super.initState();
-    //loadData();
-  }
-
-  /*loadData() async {
-    listaPropriedades = await MedicosDao().listarMedicos();
-    setState(() {});
-  }*/
 
   Widget build(BuildContext context) {
     return SafeArea(

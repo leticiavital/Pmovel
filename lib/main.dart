@@ -6,7 +6,7 @@ import 'package:infoclin2/uti_page1.dart';
 void main() {
   runApp(
     MaterialApp(
-        home: UTI_page1()
+        home: UTI_page()
     ),
   );
 }

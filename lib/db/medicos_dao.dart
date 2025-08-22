@@ -10,7 +10,21 @@ class MedicosDao {
 
     List<Medico> listaMedicos = [];
 
-    await Future.delayed(Duration(seconds: 3));
+    // ForEach
+    for (var json in result) {
+      Medico medico = Medico.fromJson(json);
+      listaMedicos.add(medico);
+    }
+
+    return listaMedicos;
+  }
+
+  Future<List<Medico>> listarPorEstadoEspecialidade(String estado, String especialidade) async {
+    Database db = await DBHelper().initDB();
+    String sql = 'SELECT * FROM Medico WHERE estado = ? and especialidade = ?;';
+    var result = await db.rawQuery(sql, [estado, especialidade]);
+
+    List<Medico> listaMedicos = [];
 
     // ForEach
     for (var json in result) {

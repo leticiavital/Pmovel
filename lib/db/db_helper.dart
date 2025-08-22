@@ -32,7 +32,14 @@ class DBHelper {
     await db.execute(sql);
 
     sql =
-    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Fernanda' ,'Neurologia', 'Alagoas', 'drafernanda@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPd1ag04qAxUqyFsA1waifXN9eNnce45gdKQ&s');";
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Fernanda' ,'Neurologia', 'AL', 'drafernanda@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPd1ag04qAxUqyFsA1waifXN9eNnce45gdKQ&s');";
     await db.execute(sql);
+
+    sql =
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Fernanda' ,'Neurologia', 'AL', 'drafernanda@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPd1ag04qAxUqyFsA1waifXN9eNnce45gdKQ&s');";
+    await db.execute(sql);
+
+
   }
+
 }

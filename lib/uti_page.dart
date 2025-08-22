@@ -1,21 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infoclin2/domain/medico.dart';
+
+import 'db/medicos_dao.dart';
 
 class UTI_page extends StatefulWidget {
-  const UTI_page({super.key});
+
+  const UTI_page({Key? key}) : super(key: key);
 
   @override
   State<UTI_page> createState() => _UTI_page();
 }
 
 class _UTI_page extends State<UTI_page> {
+
+  String? estadoselecionado;
+  String? especialidadeselecionada;
+
+  final List<String> estados = [
+    'AC',
+    'AL',
+    'AP',
+    'AM',
+    'BA',
+    'CE',
+    'ES',
+    'GO',
+    'MA',
+    'MT',
+    'MS',
+    'MG',
+    'PA',
+    'PB',
+    'PR',
+    'PE',
+    'PI',
+    'RJ',
+    'RN',
+    'SC',
+    'SE',
+    'TO',
+    'DF'
+  ];
+
+  final List<String> especialidades = [
+    'Cardiologia',
+    'Ortopedia',
+    'Neurologia',
+    'Pediatria',
+    'Oftalmologia',
+    'Dermatologia',
+  ];
+
+  bool _mostrarContainer = false;
+
+  List listaMedicos = [];
+
+  loadData(String estado, String especialidade) async {
+    listaMedicos = await MedicosDao().listarPorEstadoEspecialidade(estado, especialidade);
+    setState(() {});
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(),
         backgroundColor: Color(0xffeff9ff),
-        body: Column(
+        body: ListView(
           children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
@@ -59,193 +112,87 @@ class _UTI_page extends State<UTI_page> {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                DropdownButton(
-                    hint: Text('ESTADO'),
-                    items: const [
-                      DropdownMenuItem(
-                        child: Text('AC'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('AL'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('AP'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('AM'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('BA'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('CE'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('ES'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('GO'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('MA'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('MT'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('MS'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('MG'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('PA'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('PB'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('PR'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('PE'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('PI'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('RJ'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('RN'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('RS'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('RO'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('RR'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('SC'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('SE'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('TO'),
-                        value: ('ESTADO'),
-                      ),
-                      DropdownMenuItem(
-                        child: Text('DF'),
-                        value: ('ESTADO'),
-                      ),
-                    ],
-                    onChanged: (value) {}),
-
-                  DropdownButton(
-                      hint: Text('EPECIALIDADE'),
-                      items: const [
-                        DropdownMenuItem(
-                          child: Text('ORTOPEDIA'),
-                          value: ('ESPECIALIDADE'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Row(
+                children: [
+                  // Dropdown de Estado
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      value: estadoselecionado,
+                      decoration: InputDecoration(
+                        labelText: "ESTADO",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        DropdownMenuItem(
-                          child: Text('NEUROLOGIA'),
-                          value: ('ESPECIALIDADE'),
-                        ),
-                        DropdownMenuItem(
-                          child: Text('PEDIATRA'),
-                          value: ('ESPECIALIDADE'),
-                        ),
-                        DropdownMenuItem(
-                          child: Text('OFTAMOLOGIA'),
-                          value: ('ESPECIALIDADE'),
-                        ),
-                        DropdownMenuItem(
-                          child: Text(''),
-                          value: ('ESPECIALIDADE'),
-                        ),
-                      ],
-                      onChanged: (value) {}),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  padding:
-                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-                  margin: EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    'assets/medico2.png',
-                    width: 110,
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    'Alagoas, Neurologia - Doutor Rafael',
-                    maxLines: 2,
-                    style: GoogleFonts.cairo(
-                      fontSize: 22,
+                      ),
+                      items: estados.map((String estado) {
+                        return DropdownMenuItem<String>(
+                          value: estado,
+                          child: Text(estado),
+                        );
+                      }).toList(),
+                      onChanged: (String? novoValor) {
+                        setState(() {
+                          estadoselecionado = novoValor;
+                        });
+                      },
                     ),
                   ),
-                ),
-    ],
-    ),
-                Container(
-                  padding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-                  margin: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    color: Color(0xFF7cb2d6),
-                    borderRadius: BorderRadius.circular(20.0)
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("INFORMAÇÕES PARA CONTATO:",
-                      style: GoogleFonts.cairo(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.white
+
+                  SizedBox(width: 16), // Espaço entre os dois dropdowns
+
+                  // Dropdown de Especialidade
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      value: especialidadeselecionada,
+                      decoration: InputDecoration(
+                        labelText: "ESPECIALIDADE",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
-                      ),
-                      Text("Email: ")
-                    ],
+                      items: especialidades.map((String esp) {
+                        return DropdownMenuItem<String>(
+                          value: esp,
+                          child: Text(esp),
+                        );
+                      }).toList(),
+
+                      onChanged: (String? novaEsp) {
+                        setState(() {
+                          especialidadeselecionada = novaEsp;
+                        });
+                      },
+                    ),
                   ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 100, vertical: 10),
+              child: ElevatedButton(
+                  onPressed: () {
+                    loadData(estadoselecionado!, especialidadeselecionada!);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white, backgroundColor: Colors.blue,
                 ),
-              ],
-        ),
-      ),
+                  child: const Text('PESQUISAR'),
+              ),
+            ),
+
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: listaMedicos.length,
+              itemBuilder: (context, i) {
+                return buildMedico(listaMedicos[i]);
+              },
+            )
+
+            ],
+                      ),
+                ),
     );
   }
 }
@@ -273,3 +220,41 @@ buildAppBar() {
     backgroundColor: Color(0xFF7cb2d6),
   );
 }
+buildMedico(Medico m){
+  return Container(
+    padding:
+    EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+    margin: EdgeInsets.all(20.0),
+    decoration: BoxDecoration(
+        color: Color(0xFF7cb2d6),
+      borderRadius: BorderRadius.circular(20)
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+        children: [
+          ClipRRect(
+            child: Image.network(m.urlImage,
+              width: 100,),
+            borderRadius: BorderRadius.circular(1000),
+          ),
+          Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(m.nome),
+              Text(m.estado),
+              Text(m.email),
+            ],
+          )
+
+  ],
+        ),
+      ],
+    )
+
+  );
+}
+
+
