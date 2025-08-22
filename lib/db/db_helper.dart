@@ -32,14 +32,16 @@ class DBHelper {
     await db.execute(sql);
 
     sql =
-    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Fernanda' ,'Neurologia', 'AL', 'drafernanda@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPd1ag04qAxUqyFsA1waifXN9eNnce45gdKQ&s');";
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Fernanda Oliveira' ,'Neurologia', 'AL', 'drafernanda@gmail.com', 'assets/medica.jpg');";
     await db.execute(sql);
 
     sql =
-    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Fernanda' ,'Neurologia', 'AL', 'drafernanda@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPd1ag04qAxUqyFsA1waifXN9eNnce45gdKQ&s');";
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dr Rafael' ,'Neurologia', 'AL', 'dr1rafael@gmail.com', 'assets/medico2.png');";
     await db.execute(sql);
 
-
+    sql =
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Luciana' ,'Cardiologia', 'PE', 'draluciana@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbi5rgOsTgdefvGMAfB12cx_fsegh04n_QWg&s');";
+    await db.execute(sql);
   }
 
 }

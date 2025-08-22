@@ -52,8 +52,6 @@ class _UTI_page extends State<UTI_page> {
     'Dermatologia',
   ];
 
-  bool _mostrarContainer = false;
-
   List listaMedicos = [];
 
   loadData(String estado, String especialidade) async {
@@ -235,17 +233,31 @@ buildMedico(Medico m){
         Row(
         children: [
           ClipRRect(
-            child: Image.network(m.urlImage,
-              width: 100,),
+            child: Image.asset(m.urlImage,
+              width: 150,),
             borderRadius: BorderRadius.circular(1000),
           ),
           Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(m.nome),
-              Text(m.estado),
-              Text(m.email),
+              Text(m.nome,
+              style: GoogleFonts.cairo(
+                color: Colors.black,
+                fontWeight: FontWeight.bold
+              ),
+              ),
+              Text(m.estado,
+              style: GoogleFonts.cairo(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold
+              ),
+              ),
+              Text(m.email,
+              style: GoogleFonts.cairo(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold
+              ),),
             ],
           )
 
