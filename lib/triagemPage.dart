@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:triagem/Domain/triagem.dart';
+import 'package:triagem/dbTriagem/TriagemDAO.dart';
 
 class TriagemPage extends StatefulWidget {
   const TriagemPage({super.key});
@@ -11,6 +13,7 @@ class _TriagemPageState extends State<TriagemPage> {
   final TextEditingController idadeController = TextEditingController();
   final TextEditingController sexoController = TextEditingController();
   final TextEditingController cancerController = TextEditingController();
+  final TextEditingController nomeController = TextEditingController();
 
   String? respostaCancer;
   String? sintomaSelecionado; // variável do ComboBox de sintomas
@@ -24,6 +27,10 @@ class _TriagemPageState extends State<TriagemPage> {
     'Náusea',
     'Outro'
   ];
+
+  get dao => null;
+
+  List listaTriagem = [];
 
   @override
   Widget build(BuildContext context) {
@@ -220,19 +227,33 @@ class _TriagemPageState extends State<TriagemPage> {
                   },
                 ),
 
+
                 const SizedBox(height: 12),
 
                 Center(
-                  child: ElevatedButton(onPressed: (){
-
-                  },
-
-                      style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white, backgroundColor: Colors.blue
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      TriagemDao dao = TriagemDao();
+                      Triagem nova = Triagem(
+                        sexo: sexoController.text,
+                        idade: int.tryParse(idadeController.text) ?? 0,
+                        sintoma: sintomaSelecionado ?? "",
+                      );
+                      await dao.inserirTriagem(nova);
+                      print(await dao.listarTriagem());
+                      print("Triagem salva no banco!");
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Text('SALVAR DADOS')),
-                )
-
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    ),
+                    child: const Text("Salvar"),
+                  ),
+                ),
 
               ],
             ),
@@ -242,7 +263,7 @@ class _TriagemPageState extends State<TriagemPage> {
     );
   }
 
-buildappbar() {
+  buildappbar() {
     return AppBar(
       actions: [
         Container(
