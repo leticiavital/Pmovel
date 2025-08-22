@@ -10,15 +10,15 @@ class Sintoma {
   });
 
   Sintoma.fromJson(Map<String, dynamic> json) {
-    nomeSintoma = json['nomeSintoma'];
-    descricaoDoSintoma = json['descricaoDoSintoma'];
-    nivelUrgencia = json['nivelUrgencia'];
+    nomeSintoma = json['nome'] ?? '';
+    descricaoDoSintoma = json['descricao'] ?? '';
+    nivelUrgencia = json['nivelUrgencia'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['nomeSintoma'] = this.nomeSintoma;
-    data['descricaoDoSintoma'] = this.descricaoDoSintoma;
+    data['nome'] = this.nomeSintoma;
+    data['descricao'] = this.descricaoDoSintoma;
     data['nivelUrgencia'] = this.nivelUrgencia;
     return data;
   }

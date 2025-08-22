@@ -1,6 +1,6 @@
 import 'package:infoclin_913/domain/sintoma.dart';
 import "package:sqflite/sqflite.dart";
-import '../ database/database_helper.dart';
+import '../database/database_helper.dart';
 
 
 class SintomaDao {
@@ -10,8 +10,6 @@ class SintomaDao {
     var result = await db.rawQuery(sql);
 
     List<Sintoma> listaSintomas = [];
-
-    await Future.delayed(Duration(seconds: 2));
 
 
     for (var json in result) {

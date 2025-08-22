@@ -1,5 +1,4 @@
 
-
 import "package:path/path.dart";
 import "package:sqflite/sqflite.dart";
 import 'dart:async';
@@ -23,10 +22,6 @@ class DBHelper {
 
   Future<void> onCreate(Database db, int version) async {
     String sql;
-
-    Future<void> onCreate(Database db, int version) async {
-      String sql;
-
       // Tabela Cancer
       sql = '''
   CREATE TABLE Cancer (
@@ -54,14 +49,13 @@ class DBHelper {
   CREATE TABLE Tratamento (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
-    tipo TEXT,
+    indicacao TEXT,
     descricao TEXT,
     efeitosColaterais TEXT
   );
   ''';
       await db.execute(sql);
 
-      // ------------ INSERÇÕES ------------
 
       // CÂNCERES
       sql = '''
@@ -79,27 +73,26 @@ class DBHelper {
       sql = '''
   INSERT INTO Sintoma (nome, descricao, nivelUrgencia)
   VALUES 
-    ('Tosse Persistente', 'Tosse que dura mais de 3 semanas', 'Alta'),
     ('Nódulo na Mama', 'Caroço detectado ao toque', 'Alta'),
-    ('Sangue nas Fezes', 'Presença de sangue visível ou oculto', 'Alta'),
+     ('Tosse Persistente', 'Tosse que dura mais de 3 semanas', 'Alta'),
+      ('Dor ao Urinar', 'Desconforto ou queimação', 'Média'),
     ('Lesões na Pele', 'Feridas que não cicatrizam', 'Média'),
-    ('Dor ao Urinar', 'Desconforto ou queimação', 'Média'),
-    ('Perda de Peso Inexplicada', 'Emagrecimento sem dieta', 'Alta'),
-    ('Fadiga Persistente', 'Cansaço prolongado e sem causa aparente', 'Média');
+     ('Sangue nas Fezes', 'Presença de sangue visível ou oculto', 'Alta'),
+   
   ''';
       await db.execute(sql);
 
       // TRATAMENTOS
       sql = '''
-  INSERT INTO Tratamento (nome, tipo, descricao, efeitosColaterais)
+  INSERT INTO Tratamento (nome, indicacao, descricao, efeitosColaterais)
   VALUES 
-    ('Quimioterapia', 'Medicamentoso', 'Uso de medicamentos para destruir células cancerígenas', 'Náusea, Queda de cabelo, Fadiga'),
-    ('Radioterapia', 'Físico', 'Radiação para eliminar células tumorais', 'Irritação na pele, Fadiga'),
-    ('Cirurgia', 'Invasivo', 'Remoção física do tumor', 'Dor, Risco de infecção'),
-    ('Imunoterapia', 'Biológico', 'Estimula o sistema imunológico a combater o câncer', 'Febre, Fadiga, Dor muscular'),
-    ('Terapia Hormonal', 'Hormonal', 'Bloqueio de hormônios que alimentam o câncer', 'Alterações de humor, Fadiga');
+    ('Quimioterapia', 'cânceres que se espalham (metastáticos) ou cânceres do sangue.', 'Uso de medicamentos para destruir células cancerígenas', 'Náusea, Queda de cabelo, Fadiga'),
+    ('Radioterapia', 'tumores localizados ou para controle de sintomas.', 'Radiação para eliminar células tumorais', 'Irritação na pele, Fadiga'),
+    ('Cirurgia', 'tumores sólidos e localizados', 'Remoção física do tumor ou parte afetada.', 'Dor, Risco de infecção'),
+    ('Imunoterapia', 'cânceres avançados ou com mutações específicas.', 'Estimula o sistema imunológico a combater o câncer', 'Febre, Fadiga, Dor muscular'),
+    ('Terapia Hormonal', 'cânceres hormonais, como: Câncer de Próstata', 'Bloqueio de hormônios que alimentam o câncer', 'Alterações de humor, Fadiga');
   ''';
       await db.execute(sql);
-    }
+
   }
 }

@@ -16,6 +16,7 @@ class CardCancer extends StatefulWidget {
 class _CardCancerState extends State<CardCancer> {
   Cancer get cancer => widget.cancer;
 
+
   @override
   Widget build(BuildContext context) {
     return Container(

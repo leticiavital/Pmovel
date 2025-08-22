@@ -12,17 +12,17 @@ class Cancer {
   });
 
   Cancer.fromJson(Map<String, dynamic> json) {
-    nomeCancer = json['nomeCancer'];
-    formadiagnostico = json['Formadiagnostico'];
-    nivelGravidadedoCancer = json['nivelGravidadedoCancer'];
+    nomeCancer = json['nome'] ?? '';
+    formadiagnostico = json['Formadiagnostico'] ?? '';
+    nivelGravidadedoCancer = json['nivelGravidade'] ?? '';
 
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['nomeCancer'] = this.nomeCancer;
-    data['formadiagnostico'] = this.formadiagnostico;
-    data['nivelGravidadedoCancer'] = this.nivelGravidadedoCancer;
+    data['nome'] = this.nomeCancer;
+    data['Formadiagnostico'] = this.formadiagnostico;
+    data['nivelGravidade'] = this.nivelGravidadedoCancer;
     return data;
   }
 }

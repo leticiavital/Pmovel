@@ -1,65 +1,49 @@
-import ‘package:flutter/material.dart’;
+import 'package:flutter/material.dart';
+import 'package:infoclin_913/domain/tratamento.dart';
 
-import ‘package:infoclin/domain/tratamento.dart’;
+class CardTratamento extends StatelessWidget {
+  final Tratamento tratamento;
 
-class CardTratamento extends StatefulWidget {
-  Tratamento tratamento;
-
-  CardTratamento({
-    required this.tratamento,
-    super.key,
-  });
-
-  @override
-  State<CardTratamento> createState() => _CardTratamentoState();
-}
-
-class _CardTratamentoState extends State<CardTratamento> {
-  Tratamento get tratamento => widget.tratamento;
+  const CardTratamento({Key? key, required this.tratamento}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: Color(0xFFE3F2FD),
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Color(0xFF87CEEB), width: 2),
-      ),
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                buildText(
-                  text: tratamento.nome,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600,
-                ),
-                Spacer(),
-                Icon(Icons.healing, size: 16, color: Color(0xFF87CEEB)),
-                buildText(
-                  text: tratamento.eficacia,
-                  fontSize: 14.0,
-                  color: Color(0xFF87CEEB),
-                  fontWeight: FontWeight.w600,
-                ),
-              ],
+            Text(
+              tratamento.nomeTratamento,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            buildText(text: tratamento.tipo),
-            buildText(text: tratamento.descricao),
-            buildText(
-              text: ‘Efeitos: ${tratamento.efeitosColaterais.join(”, “)}’,
-              fontSize: 12.0,
-              color: Colors.red[600],
+            const SizedBox(height: 8),
+            Text(
+              "Tipo: ${tratamento.indicacaoTratamento}",
+              style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
             ),
+            const SizedBox(height: 8),
+            Text(
+              tratamento.descricaoTratamento,
+              style: const TextStyle(fontSize: 14),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              "Efeitos Colaterais:",
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            ...tratamento.efeitosColaterais.map((efeito) => Text("- $efeito")),
           ],
         ),
       ),
     );
-  }
-
   }
 }
