@@ -22,7 +22,7 @@ class DBHelper {
 
   Future<void> onCreate(Database db, int version) async {
     String sql;
-      // Tabela Cancer
+
       sql = '''
   CREATE TABLE Cancer (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,7 +33,7 @@ class DBHelper {
   ''';
       await db.execute(sql);
 
-      // Tabela Sintoma
+     
       sql = '''
   CREATE TABLE Sintoma (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,7 +44,7 @@ class DBHelper {
   ''';
       await db.execute(sql);
 
-      // Tabela Tratamento
+    
       sql = '''
   CREATE TABLE Tratamento (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,7 +57,6 @@ class DBHelper {
       await db.execute(sql);
 
 
-      // CÂNCERES
       sql = '''
   INSERT INTO Cancer (nome, Formadiagnostico, nivelGravidade) 
   VALUES 
@@ -69,7 +68,7 @@ class DBHelper {
   ''';
       await db.execute(sql);
 
-      // SINTOMAS
+ 
       sql = '''
   INSERT INTO Sintoma (nome, descricao, nivelUrgencia)
   VALUES 
@@ -82,7 +81,7 @@ class DBHelper {
   ''';
       await db.execute(sql);
 
-      // TRATAMENTOS
+ 
       sql = '''
   INSERT INTO Tratamento (nome, indicacao, descricao, efeitosColaterais)
   VALUES 
