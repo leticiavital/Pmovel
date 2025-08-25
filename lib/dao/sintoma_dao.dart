@@ -16,11 +16,7 @@ class SintomaDao {
       Sintoma sintoma = Sintoma.fromJson(json);
     listaSintomas.add(sintoma);
     }
-    //for (var map in result) {
-    //   SintomaDao sintoma = SintomaDao.fromMap(map);
-    //   listaSintomas.add(sintoma);
-    // }
-
+    
     return listaSintomas;
 
   }
