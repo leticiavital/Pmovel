@@ -11,8 +11,6 @@ class CancerDao {
 
     List<Cancer> listaCanceres = [];
 
-
-// ForEach
     for (var json in result) {
       Cancer cancer = Cancer.fromJson(json);
       listaCanceres.add(cancer);
@@ -22,6 +20,7 @@ class CancerDao {
 
   }
 
+//APAGAR LINHA ABAIXO 
   Future<List<Cancer>> buscarPorSintoma(String sintoma) async {
     Database db = await DBHelper().initDB();
     String sql = 'SELECT * FROM Cancer WHERE sintomas LIKE ?';
