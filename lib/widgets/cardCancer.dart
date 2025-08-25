@@ -76,9 +76,8 @@ import '../domain/cancer.dart';
 
 class CardCancer extends StatefulWidget {
   final Cancer cancer;
-
   const CardCancer({Key? key, required this.cancer}) : super(key: key);
-
+  
   @override
   State<CardCancer> createState() => _CardCancerState();
 }
@@ -87,13 +86,7 @@ class _CardCancerState extends State<CardCancer> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 16),
       child: ListTile(
-        leading: const Icon(
-          Icons.local_hospital,
-          size: 16,
-          color: Color(0xFF87CEEB),
-        ),
         title: Text(widget.cancer.nomeCancer),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,6 +95,7 @@ class _CardCancerState extends State<CardCancer> {
             Text("Gravidade: ${widget.cancer.nivelGravidadedoCancer}"),
           ],
         ),
+        leading: const Icon(Icons.local_hospital, size: 16, color: Color(0xFF87CEEB)),
       ),
     );
   }
