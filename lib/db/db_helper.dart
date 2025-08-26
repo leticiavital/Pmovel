@@ -36,12 +36,13 @@ class DBHelper {
     await db.execute(sql);
 
     sql =
-    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dr Rafael' ,'Neurologia', 'AL', 'dr1rafael@gmail.com', 'assets/medico2.png');";
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dr Rafael Lima' ,'Neurologia', 'AL', 'dr1rafael@gmail.com', 'assets/medico2.png');";
     await db.execute(sql);
 
     sql =
-    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Luciana' ,'Cardiologia', 'PE', 'draluciana@gmail.com', 'assets/medica_cardio.jpg');";
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Luciana Rodrigues' ,'Cardiologia', 'PE', 'draluciana@gmail.com', 'assets/medica_cardio.jpg');";
     await db.execute(sql);
+
   }
 
 }
