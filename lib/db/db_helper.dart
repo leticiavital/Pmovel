@@ -40,11 +40,7 @@ class DBHelper {
     await db.execute(sql);
 
     sql =
-    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Luciana' ,'Cardiologia', 'PE', 'draluciana@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbi5rgOsTgdefvGMAfB12cx_fsegh04n_QWg&s');";
-    await db.execute(sql);
-
-    sql =
-    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dr Roberto' ,'Cardiologia', 'PE', 'dr2roberto@gmail.com', '');";
+    "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Luciana' ,'Cardiologia', 'PE', 'draluciana@gmail.com', 'assets/medica_cardio.jpg');";
     await db.execute(sql);
   }
 
