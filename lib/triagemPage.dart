@@ -96,7 +96,6 @@ class _TriagemPageState extends State<TriagemPage> {
 
                 TextField(
                   controller: idadeController,
-                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelText: "Idade",
                     border: OutlineInputBorder(
@@ -109,7 +108,6 @@ class _TriagemPageState extends State<TriagemPage> {
 
                 TextField(
                   controller: sexoController,
-                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: "Sexo",
                     border: OutlineInputBorder(
@@ -197,7 +195,6 @@ class _TriagemPageState extends State<TriagemPage> {
 
                 TextField(
                   controller: cancerController,
-                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: "Nome do câncer",
                     border: OutlineInputBorder(
