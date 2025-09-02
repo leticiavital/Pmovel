@@ -114,7 +114,6 @@ class _UTI_page extends State<UTI_page> {
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: Row(
                 children: [
-                  // Dropdown de Estado
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       value: estadoselecionado,
@@ -138,9 +137,8 @@ class _UTI_page extends State<UTI_page> {
                     ),
                   ),
 
-                  SizedBox(width: 16), // Espaço entre os dois dropdowns
+                  SizedBox(width: 16),
 
-                  // Dropdown de Especialidade
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       value: especialidadeselecionada,
