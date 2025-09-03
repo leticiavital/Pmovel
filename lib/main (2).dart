@@ -1,7 +1,6 @@
-
-
-import 'package:infoclin/DicasdeexamesInfoclin.dart ';
 import 'package:flutter/material.dart';
+
+import 'exames_page.dart';
 
 void main() {
   runApp(
