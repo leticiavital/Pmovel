@@ -1,14 +1,14 @@
 class Exames {
   late String genero;
   late String nome;
-  late String indicacao;
+  late String idade;
   late String frequencia;
   late String porquefazer;
 
  Exames({
     required this.genero,
     required this.nome,
-    required this.indicacao,
+    required this.idade,
     required this.frequencia,
     required this.porquefazer,
 
@@ -17,8 +17,8 @@ class Exames {
   Exames.fromJson(Map<String, dynamic> json) {
    genero = json['genero'];
    nome = json['nome'];
-    indicacao = json['indicacao'];
-   frequencia = json['frquencia'];
+    idade = json['idade'];
+   frequencia = json['frequencia'];
     porquefazer = json['porquefazer'];
 
   }
@@ -27,7 +27,7 @@ class Exames {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['genero'] = this.genero;
     data['nome'] = this.nome;
-    data['indicacao'] = this.indicacao;
+    data['idade'] = this.idade;
     data['frequencia'] = this.frequencia;
     data['porquefazer'] = this.porquefazer;
     return data;
