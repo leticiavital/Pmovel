@@ -28,7 +28,6 @@ class DBHelper {
       email VARCHAR(30),
       urlImage TEXT
       );''';
-
     await db.execute(sql);
 
     sql =
@@ -43,6 +42,21 @@ class DBHelper {
     "INSERT INTO Medico(nome, especialidade, estado, email, urlImage) VALUES ('Dra Luciana Rodrigues' ,'Cardiologia', 'PE', 'draluciana@gmail.com', 'assets/medica_cardio.jpg');";
     await db.execute(sql);
 
-  }
 
+    sql = '''CREATE TABLE Usuario(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome  VARCHAR(100),
+      email VARCHAR(50),
+      Senha VARCHAR(8)
+      );
+    ''';
+    await db.execute(sql);
+
+    sql =
+    "INSERT INTO Usuario(nome, email, senha) VALUES ('Maria Arielly', 'mags12@aluno.ifal.edu.br', 'ary0410');";
+    await db.execute(sql);
+
+
+
+  }
 }
