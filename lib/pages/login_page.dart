@@ -126,7 +126,7 @@ class _LoginPage extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text('CADASTRE-SE'),
+                    child: const Text('CADASTRO'),
                   ),
                 ),
 
