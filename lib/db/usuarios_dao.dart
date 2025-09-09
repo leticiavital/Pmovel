@@ -9,21 +9,29 @@ class UsuariosDao {
     var result = await db.rawQuery(sql);
 
     List<Usuario> listaUsuarios = [];
-
-    // ForEach
-    for (var json in result) {
-      Usuario usuario = Usuario.fromJson(json);
-      listaUsuarios.add(usuario);
-    }
-
     return listaUsuarios;
   }
 
-  Future<void> inserirUsuario(Usuario u) async {
+    Future<bool> login(String email, String senha) async {
+      Database db = await DBHelper().initDB();
+      String sql = 'SELECT * FROM Usuario WHERE '
+          'email = ? AND '
+          'senha = ? ';
+      var result = await db.rawQuery(sql, [email, senha]);
+      return result.isNotEmpty;
+
+  }
+
+  /*Future<void> inserirUsuario(Usuario u) async {
     Database db = await  DBHelper().initDB();
     db.insert(
         'Usuario',
         u.toJson()
     );
+  }*/
+
+  Future<void> save(Usuario u) async {
+    Database db = await DBHelper().initDB();
+    db.insert('Usuario', u.toJson());
   }
 }
