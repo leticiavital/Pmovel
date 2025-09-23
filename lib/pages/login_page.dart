@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin2/db/usuarios_dao.dart';
-import 'package:infoclin2/pages/TelaMenu.dart';
 import 'package:infoclin2/pages/cadastro_page.dart';
 import 'package:path/path.dart';
 
@@ -28,8 +27,12 @@ class _LoginPage extends State<LoginPage> {
       backgroundColor: Colors.white,
       appBar: buildAppbar(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          Image.asset('assets/icon_login1.png',
+              width: 150),
+
+          Padding(padding: EdgeInsets.symmetric(horizontal: 40, vertical: 0.1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -90,19 +93,8 @@ class _LoginPage extends State<LoginPage> {
                       String email = emailController.text;
                       String senha = senhaController.text;
                       bool auth = await UsuariosDao().login(email, senha);
-                      if (auth) {
-                        Navigator.pushReplacement(
-                          context as BuildContext,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return TelaMenu();
-                            },
-                          ),
-                        );
-                      } else {
                         print('Usuario e/ou senha incorretos!');
-                      }
-                    },
+                      },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white,
@@ -113,12 +105,29 @@ class _LoginPage extends State<LoginPage> {
                       child: const Text('ENTRAR'),
                   ),
                 ),
-                Text('OU'),
+                SizedBox(height: 5),
+                Center(
+                  child:
+                  Text('OU', style: GoogleFonts.cinzel(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue
+                  ),
+                  ),
+                ),
 
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 Center(
                   child: ElevatedButton(
-                    onPressed: (),
+                    onPressed: (){
+                      Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context){
+                            return CadastroPage();
+
+                      },
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white,
@@ -130,6 +139,8 @@ class _LoginPage extends State<LoginPage> {
                   ),
                 ),
 
+
+
                 SizedBox(height: 10),
                 Container(
                   padding:EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
@@ -137,7 +148,7 @@ class _LoginPage extends State<LoginPage> {
                   child: Center(
                     child: Image.asset(
                       'assets/saude.jpg',
-                      width: 200,
+                      width: 300,
                     ),
                   ),
                 ),
@@ -151,9 +162,9 @@ class _LoginPage extends State<LoginPage> {
 }
 buildAppbar(){
   return AppBar(
-    toolbarHeight: 220,
+    toolbarHeight: 200,
     centerTitle: true,
-    title: Padding(padding: EdgeInsets.all(20),
+    title: Padding(padding: EdgeInsets.all(10),
       child: Column(
         children: [
           Text(
@@ -184,16 +195,8 @@ buildAppbar(){
   );
 }
 
-void onPressedRegisterPage(context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) {
-        return CadastroPage();
-      },
-    ),
-  );
-}
+
+
 
 
 

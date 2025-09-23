@@ -68,6 +68,7 @@ flutter:
     - assets/medica_cardio.jpg
     - assets/medica.jpg
     - assets/saude.jpg
+    - assets/icon_login1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

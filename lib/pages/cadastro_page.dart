@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin2/db/usuarios_dao.dart';
 import 'package:infoclin2/domain/usuario.dart';
-import 'package:infoclin2/pages/TelaMenu.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
@@ -41,9 +40,9 @@ class _CadastroPageState extends State<CadastroPage> {
             SizedBox(
               width: 350,
               height: 40, child:
-          TextField(
-              controller: emailController,
-              obscureText: true,
+              TextField(
+                controller: emailController,
+
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -71,6 +70,7 @@ class _CadastroPageState extends State<CadastroPage> {
           child:
           TextField(
             controller: senhaController,
+            obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 0.5, color: Colors.blue),
@@ -82,6 +82,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
     ),
       ),
+            SizedBox(height: 20),
             Center(
               child: ElevatedButton(
                 onPressed: () async {
@@ -105,14 +106,15 @@ class _CadastroPageState extends State<CadastroPage> {
                 child: const Text('CADASTRE-SE'),
                 ),
               ),
-      SizedBox(height: 10),
+
+            SizedBox(height: 50),
             Container(
               padding:EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
               margin: EdgeInsets.all(5.0),
               child: Center(
                 child: Image.asset(
                   'assets/saude.jpg',
-                  width: 100,
+                  width: 300,
                 ),
               ),
             ),
@@ -126,7 +128,7 @@ class _CadastroPageState extends State<CadastroPage> {
 }
 buildAppbar() {
   return AppBar(
-    toolbarHeight: 220,
+    toolbarHeight: 190,
     centerTitle: true,
     title: Padding(padding: EdgeInsets.all(20),
       child: Column(
