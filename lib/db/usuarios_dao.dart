@@ -1,4 +1,4 @@
-import 'package:infoclin2/domain/usuario.dart';
+import 'package:infoclin_913/domain/usuario.dart';
 import 'package:sqflite/sqflite.dart';
 import 'db_helper.dart';
 

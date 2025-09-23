@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infoclin2/domain/medico.dart';
+import 'package:infoclin_913/domain/medico.dart';
 
 import '../db/medicos_dao.dart';
 

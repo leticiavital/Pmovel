@@ -33,12 +33,13 @@ class _CardCancerState extends State<CardCancer> {
                 fontWeight: FontWeight.w600,
               ),
               const Spacer(),
-              const Icon(Icons.local_hospital, size: 16, color: Color(0xFF87CEEB)),
+              const Icon(
+                  Icons.local_hospital, size: 16, color: Color(0xFF87CEEB)),
             ],
           ),
           const SizedBox(height: 16),
 
-      
+
           buildText(
             text: "Diagnóstico: ${cancer.formadiagnostico}",
           ),
@@ -69,7 +70,7 @@ class _CardCancerState extends State<CardCancer> {
       ),
     );
   }
-}
+
 
 /*import 'package:flutter/material.dart';
 import '../domain/cancer.dart';
@@ -99,4 +100,5 @@ class _CardCancerState extends State<CardCancer> {
       ),
     );
   }
+}*/
 }

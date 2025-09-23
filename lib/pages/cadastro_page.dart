@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infoclin2/db/usuarios_dao.dart';
-import 'package:infoclin2/domain/usuario.dart';
+import 'package:infoclin_913/db/usuarios_dao.dart';
+import 'package:infoclin_913/domain/usuario.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
