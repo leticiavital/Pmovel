@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:infoclin_913/HomePageInfoclin.dart';
+import 'package:infoclin2/pages/login_page.dart';
 
 
 
 void main() {
-  runApp(MaterialApp(
-    home: infoClinHomePage(),
-  ),
-  );}
+  runApp(
+    MaterialApp(
+        home: LoginPage()
+    ),
+  );
+}
