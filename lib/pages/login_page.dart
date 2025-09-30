@@ -51,7 +51,7 @@ class _LoginPage extends State<LoginPage> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
-                          width: 1.0,
+                          width: 0.5,
                           color: Colors.blue),
                     ),
                     focusedBorder: OutlineInputBorder(
