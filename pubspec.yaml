@@ -65,7 +65,7 @@ flutter:
     - assets/simbolo.png
     - assets/cancer.png
     - assets/imagem.png
-    -  assets/icon_medico.png
+    - assets/icon_medico.png
     - assets/medico2.png
     - assets/medica_cardio.jpg
     - assets/medica.jpg
