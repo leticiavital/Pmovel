@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:infoclin_913/pages/login_page.dart';
 
 class TelaMenu extends StatefulWidget {
   const TelaMenu({super.key});
@@ -26,7 +28,7 @@ class _TelaMenu extends State<TelaMenu> {
                 const SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
-                    // Sua ação
+                    //
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF7cb2d6),
@@ -54,11 +56,12 @@ class _TelaMenu extends State<TelaMenu> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/enfermaria.png', width: 100),
-                const SizedBox(width: 35),
+                Image.asset('assets/enfermaria.png',
+                    width: 100),
+                const SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
-                    // Sua ação
+                    //
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF7cb2d6),
@@ -168,25 +171,29 @@ class _TelaMenu extends State<TelaMenu> {
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 30.0),
-          child: Icon(
+          child: IconButton(onPressed: (){
+            Navigator.pop(context, MaterialPageRoute(builder: (context){
+              return LoginPage();
+            }),
+            );
+          },
+          icon: Icon(
             Icons.home,
             size: 40,
             color: Colors.white,
-          ),
-        ),
+    ),
+    ),
+    ),
       ],
-      toolbarHeight: 100,
+      toolbarHeight: 140,
       centerTitle: true,
       backgroundColor: const Color(0xFF7cb2d6),
       title: const Text(
-        'INFOCLIN',
-        style: TextStyle(
-          fontSize: 32,
-          fontFamily: 'Carrois Gothic SC',
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+        'INFOCLIN', style: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold
       ),
-    );
+      )
+        );
   }
 }

@@ -25,13 +25,13 @@ class _CadastroPageState extends State<CadastroPage> {
       backgroundColor: Colors.white,
       appBar: buildAppbar(),
       body: ListView(
-    children: [
-      Padding(padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Email:',
-              style: GoogleFonts.cairo(
+        children: [
+          Padding(padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Email:',
+                  style: GoogleFonts.cairo(
                   fontSize: 14,
                   fontWeight: FontWeight.bold
               ),
@@ -64,16 +64,15 @@ class _CadastroPageState extends State<CadastroPage> {
                   fontWeight: FontWeight.bold
               ),
             ),
-        SizedBox(
-          width: 350,
-          height: 40,
-          child:
-          TextField(
-            controller: senhaController,
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide(width: 0.5, color: Colors.blue),
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  child:
+                  TextField(
+                    controller: senhaController,
+                    obscureText: true,
+                    decoration: InputDecoration(border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 0.5, color: Colors.blue),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 3.0, color: Color(0xFF7cb2d6)),
@@ -93,7 +92,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     );
                     await dao.save(novo);
                     print(await dao.listarUsuarios());
-                  print("Usuario salvo no banco!");
+                    print("Usuario salvo no banco!");
 
                   },
                   style: ElevatedButton.styleFrom(

@@ -62,8 +62,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/simbolo.png
-    - assets/cancer.png
     - assets/imagem.png
     - assets/icon_medico.png
     - assets/medico2.png
@@ -71,6 +69,9 @@ flutter:
     - assets/medica.jpg
     - assets/saude.jpg
     - assets/icon_login1.png
+    - assets/enfermaria.png
+    - assets/caixinha.png
+    - assets/uti.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

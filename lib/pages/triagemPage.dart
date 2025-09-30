@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'Domain/triagem.dart';
-import 'dbTriagem/TriagemDAO.dart';
+import '../Domain/triagem.dart';
+import '../dbTriagem/TriagemDAO.dart';
 
 class TriagemPage extends StatefulWidget {
   const TriagemPage({super.key});
