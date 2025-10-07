@@ -47,36 +47,3 @@ class CardTratamento extends StatelessWidget {
     );
   }
 }
-/*import 'package:flutter/material.dart';
-import 'package:infoclin_913/domain/tratamento.dart';
-
-class CardTratamento extends StatefulWidget {
-  final Tratamento tratamento;
-  const CardTratamento({Key? key, required this.tratamento}) : super(key: key);
-  
-  @override
-  State<CardTratamento> createState() => _CardTratamentoState();
-}
-
-class _CardTratamentoState extends State<CardTratamento> {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(widget.tratamento.nomeTratamento),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Indicação: ${widget.tratamento.indicacaoTratamento}"),
-            Text(widget.tratamento.descricaoTratamento),
-            if (widget.tratamento.efeitosColaterais.isNotEmpty) ...[
-              const SizedBox(height: 4),
-              Text("Efeitos: ${widget.tratamento.efeitosColaterais.join(', ')}"),
-            ],
-          ],
-        ),
-        leading: const Icon(Icons.local_hospital, size: 16, color: Color(0xFF87CEEB)),
-      ),
-    );
-  }
-}

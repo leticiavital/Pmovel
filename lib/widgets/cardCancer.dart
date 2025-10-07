@@ -70,33 +70,3 @@ class _CardCancerState extends State<CardCancer> {
     );
   }
 }
-
-/*import 'package:flutter/material.dart';
-import '../domain/cancer.dart';
-
-class CardCancer extends StatefulWidget {
-  final Cancer cancer;
-  const CardCancer({Key? key, required this.cancer}) : super(key: key);
-  
-  @override
-  State<CardCancer> createState() => _CardCancerState();
-}
-
-class _CardCancerState extends State<CardCancer> {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(widget.cancer.nomeCancer),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Diagnóstico: ${widget.cancer.formadiagnostico}"),
-            Text("Gravidade: ${widget.cancer.nivelGravidadedoCancer}"),
-          ],
-        ),
-        leading: const Icon(Icons.local_hospital, size: 16, color: Color(0xFF87CEEB)),
-      ),
-    );
-  }
-}
