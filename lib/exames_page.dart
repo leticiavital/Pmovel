@@ -16,6 +16,7 @@ class _DicasdeexamesInfoclin extends State<DicasdeexamesInfoclin> {
   List  listaExames = [];
 
   loadData(String genero, String idade) async {
+
     listaExames = await ExamesDao().listarexamesGeneroIdade(genero, idade);
     setState(() {});
   }
