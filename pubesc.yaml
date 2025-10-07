@@ -1,3 +1,4 @@
+
 name: infoclin_913
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
@@ -66,6 +67,6 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
-  #        
+  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
