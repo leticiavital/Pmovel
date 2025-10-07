@@ -10,14 +10,14 @@ import 'package:infoclin_913/widgets/cardSintoma.dart';
 import 'package:infoclin_913/widgets/cardTratamento.dart';
 
 
-class infoClinHomePage extends StatefulWidget {
-  const infoClinHomePage({super.key});
+class EnfermariaPage extends StatefulWidget {
+  const EnfermariaPage({super.key});
 
   @override
-  State<infoClinHomePage> createState() => _infoClinHomePageState();
+  State<EnfermariaPage> createState() => _EnfermariaPage();
 }
 
-class _infoClinHomePageState extends State<infoClinHomePage> {
+class _EnfermariaPage extends State<EnfermariaPage> {
   int tamanhoListaCancer = 0;
   List<Cancer> listaCancer = [];
   int tamanhoListaSintomas = 0;

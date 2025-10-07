@@ -22,14 +22,6 @@ class UsuariosDao {
 
   }
 
-  /*Future<void> inserirUsuario(Usuario u) async {
-    Database db = await  DBHelper().initDB();
-    db.insert(
-        'Usuario',
-        u.toJson()
-    );
-  }*/
-
   Future<void> save(Usuario u) async {
     Database db = await DBHelper().initDB();
     db.insert('Usuario', u.toJson());

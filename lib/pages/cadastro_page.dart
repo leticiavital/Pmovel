@@ -14,6 +14,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
    TextEditingController emailController = TextEditingController();
    TextEditingController senhaController = TextEditingController();
+   TextEditingController nomeController = TextEditingController();
 
   get dao => null;
 
@@ -30,6 +31,32 @@ class _CadastroPageState extends State<CadastroPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text('Nome: ',
+                  style: GoogleFonts.cairo(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold
+                  ),
+            ),
+                  SizedBox(
+                    width: 350,
+                    height: 40, child:
+                  TextField(
+                    controller: nomeController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1.0,
+                            color: Colors.blue),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3.0,
+                            color: Color(0xFF7cb2d6)),
+                      ),
+                    ),
+                  ),
+                  ),
+                SizedBox(height: 10),
                 Text('Email:',
                   style: GoogleFonts.cairo(
                   fontSize: 14,
@@ -89,6 +116,8 @@ class _CadastroPageState extends State<CadastroPage> {
                     Usuario novo = Usuario(
                       email: emailController.text,
                       senha: senhaController.text,
+                      nome: nomeController.text,
+
                     );
                     await dao.save(novo);
                     print(await dao.listarUsuarios());

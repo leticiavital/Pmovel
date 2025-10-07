@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infoclin_913/enfermariaPage.dart';
 import 'package:infoclin_913/pages/login_page.dart';
+import 'package:infoclin_913/pages/triagemPage.dart';
+import 'package:infoclin_913/pages/uti_page.dart';
 
 class TelaMenu extends StatefulWidget {
   const TelaMenu({super.key});
@@ -20,7 +23,6 @@ class _TelaMenu extends State<TelaMenu> {
           children: [
             const SizedBox(height: 65),
 
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -28,7 +30,14 @@ class _TelaMenu extends State<TelaMenu> {
                 const SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
-                    //
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TriagemPage();
+                        },
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF7cb2d6),
@@ -43,25 +52,27 @@ class _TelaMenu extends State<TelaMenu> {
                   ),
                   child: const Text(
                     'TRIAGEM',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],
             ),
 
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/enfermaria.png',
-                    width: 100),
+                Image.asset('assets/enfermaria.png', width: 100),
                 const SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
-                    //
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return EnfermariaPage();
+                        },
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF7cb2d6),
@@ -76,15 +87,11 @@ class _TelaMenu extends State<TelaMenu> {
                   ),
                   child: const Text(
                     'EMFERMARIA',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],
             ),
-
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -92,9 +99,7 @@ class _TelaMenu extends State<TelaMenu> {
                 Image.asset('assets/caixinha.png', width: 100),
                 const SizedBox(width: 50),
                 ElevatedButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF7cb2d6),
                     shape: RoundedRectangleBorder(
@@ -108,10 +113,7 @@ class _TelaMenu extends State<TelaMenu> {
                   ),
                   child: const Text(
                     'CAIXINHA DE REMÉDIO',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],
@@ -124,7 +126,14 @@ class _TelaMenu extends State<TelaMenu> {
                 const SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return UTI_page();
+                        },
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF7cb2d6),
@@ -139,10 +148,7 @@ class _TelaMenu extends State<TelaMenu> {
                   ),
                   child: const Text(
                     'UTI',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],
@@ -168,32 +174,27 @@ class _TelaMenu extends State<TelaMenu> {
 
   buildappbar() {
     return AppBar(
-      actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 30.0),
-          child: IconButton(onPressed: (){
-            Navigator.pop(context, MaterialPageRoute(builder: (context){
-              return LoginPage();
-            }),
-            );
-          },
-          icon: Icon(
-            Icons.home,
-            size: 40,
-            color: Colors.white,
-    ),
-    ),
-    ),
-      ],
       toolbarHeight: 140,
       centerTitle: true,
       backgroundColor: const Color(0xFF7cb2d6),
       title: const Text(
-        'INFOCLIN', style: TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold
+        'INFOCLIN',
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 40,
+        ),
       ),
-      )
-        );
+      actions: [IconButton(onPressed: (){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+          return LoginPage();
+        },));
+      }, icon: Icon(Icons.logout,
+      size: 35,
+        color: Colors.white,
+      ),
+      ),
+      ],
+    );
   }
 }
