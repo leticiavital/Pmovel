@@ -6,15 +6,15 @@ import 'package:path/path.dart';
 import '../db/medicos_dao.dart';
 import 'TelaMenu.dart';
 
-class UTI_page extends StatefulWidget {
+class UTI_page2 extends StatefulWidget {
 
-  const UTI_page({Key? key}) : super(key: key);
+  const UTI_page2({Key? key}) : super(key: key);
 
   @override
-  State<UTI_page> createState() => _UTI_page();
+  State<UTI_page2> createState() => _UTI_page2();
 }
 
-class _UTI_page extends State<UTI_page> {
+class _UTI_page2 extends State<UTI_page2> {
 
   String? estadoselecionado;
   String? especialidadeselecionada;
@@ -170,13 +170,13 @@ class _UTI_page extends State<UTI_page> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 100, vertical: 10),
               child: ElevatedButton(
-                  onPressed: () {
-                    loadData(estadoselecionado!, especialidadeselecionada!);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white, backgroundColor: Colors.blue,
+                onPressed: () {
+                  loadData(estadoselecionado!, especialidadeselecionada!);
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, backgroundColor: Colors.blue,
                 ),
-                  child: const Text('PESQUISAR'),
+                child: const Text('PESQUISAR'),
               ),
             ),
 
@@ -188,9 +188,9 @@ class _UTI_page extends State<UTI_page> {
               },
             )
 
-            ],
-                      ),
-                ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -210,51 +210,51 @@ buildAppBar() {
 }
 buildMedico(Medico m){
   return Container(
-    padding:
-    EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-    margin: EdgeInsets.all(20.0),
-    decoration: BoxDecoration(
-        color: Color(0xFF7cb2d6),
-      borderRadius: BorderRadius.circular(20)
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+      padding:
+      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      margin: EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+          color: Color(0xFF7cb2d6),
+          borderRadius: BorderRadius.circular(20)
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            child: Image.asset(m.urlImage,
-              width: 150,),
-            borderRadius: BorderRadius.circular(1000),
-          ),
-          Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+          Row(
             children: [
-              Text(m.nome,
-              style: GoogleFonts.cairo(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
+              ClipRRect(
+                child: Image.asset(m.urlImage,
+                  width: 150,),
+                borderRadius: BorderRadius.circular(1000),
               ),
-              ),
-              Text(m.estado,
-              style: GoogleFonts.cairo(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),
-              ),
-              Text(m.email,
-              style: GoogleFonts.cairo(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
-            ],
-          )
+              Spacer(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(m.nome,
+                    style: GoogleFonts.cairo(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  Text(m.estado,
+                    style: GoogleFonts.cairo(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  Text(m.email,
+                    style: GoogleFonts.cairo(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                    ),),
+                ],
+              )
 
-  ],
-        ),
-      ],
-    )
+            ],
+          ),
+        ],
+      )
 
   );
 }
