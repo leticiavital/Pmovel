@@ -7,8 +7,8 @@ class MedicoApi {
   final dio = Dio();
   String baseUrl = 'https://doctorsapi.com/api';
 
-  Future<Medico2> findByStateAndSpecialties(String state, String specialties) async {
-    final response = await dio.get('$baseUrl/doctors');
+  Future<Medico2> findByCredentials(String credentials) async {
+    final response = await dio.get('$baseUrl/doctors/npi/$credentials');
     print(response.data);
 
     Medico2 medico2 = Medico2.fromJson(response.data);
