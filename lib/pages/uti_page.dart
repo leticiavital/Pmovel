@@ -249,13 +249,11 @@ buildMedico(Medico m){
                   fontWeight: FontWeight.bold
               ),),
             ],
-          )
-
+          ),
   ],
         ),
       ],
     )
-
   );
 }
 

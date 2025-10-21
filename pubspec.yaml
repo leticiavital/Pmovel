@@ -74,6 +74,7 @@ flutter:
     - assets/enfermaria.png
     - assets/caixinha.png
     - assets/uti.png
+    - assets/iconDoctor.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

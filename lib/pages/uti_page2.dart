@@ -16,52 +16,6 @@ class UTI_page2 extends StatefulWidget {
 
 class _UTI_page2 extends State<UTI_page2> {
 
-  String? estadoselecionado;
-  String? especialidadeselecionada;
-
-  final List<String> estados = [
-    'AC',
-    'AL',
-    'AP',
-    'AM',
-    'BA',
-    'CE',
-    'ES',
-    'GO',
-    'MA',
-    'MT',
-    'MS',
-    'MG',
-    'PA',
-    'PB',
-    'PR',
-    'PE',
-    'PI',
-    'RJ',
-    'RN',
-    'SC',
-    'SE',
-    'TO',
-    'DF'
-  ];
-
-  final List<String> especialidades = [
-    'Cardiologia',
-    'Ortopedia',
-    'Neurologia',
-    'Pediatria',
-    'Oftalmologia',
-    'Dermatologia',
-  ];
-
-  List listaMedicos = [];
-
-  loadData(String estado, String especialidade) async {
-    listaMedicos = await MedicosDao().listarPorEstadoEspecialidade(estado, especialidade);
-    setState(() {});
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,127 +24,76 @@ class _UTI_page2 extends State<UTI_page2> {
         backgroundColor: Color(0xffeff9ff),
         body: ListView(
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-              margin: EdgeInsets.all(42.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Color(0xFF7cb2d6),
-              ),
-              child: Center(
-                child: Text('UTI',
-                    style: GoogleFonts.cinzel(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700)),
-              ),
-            ),
-            Row(
+            Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+
                 Container(
-                  padding:
-                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 2.0),
-                  margin: EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    'assets/icon_medico.png',
-                    width: 80,
+                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                  margin: EdgeInsets.all(30.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Color(0xFF7cb2d6),
+                  ),
+                  child: Text('MÉDICOS RECOMENDADOS',
+                  style: GoogleFonts.cinzel(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white
+                  ),
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.all(0.0),
-                    margin: const EdgeInsets.all(0.1),
-                    child: Center(
-                      child: Text(
-                        'Encontrar um Oncologista perto de mim',
-                        maxLines: 2,
-                        style: GoogleFonts.cairo(
-                            fontSize: 20, fontWeight: FontWeight.w700),
-                      ),
-                    ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+                  margin: EdgeInsets.all(30.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Color(0xFF7cb2d6),
                   ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      value: estadoselecionado,
-                      decoration: InputDecoration(
-                        labelText: "ESTADO",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      items: estados.map((String estado) {
-                        return DropdownMenuItem<String>(
-                          value: estado,
-                          child: Text(estado),
-                        );
-                      }).toList(),
-                      onChanged: (String? novoValor) {
-                        setState(() {
-                          estadoselecionado = novoValor;
-                        });
-                      },
-                    ),
-                  ),
-
-                  SizedBox(width: 16),
-
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      value: especialidadeselecionada,
-                      decoration: InputDecoration(
-                        labelText: "ESPECIALIDADE",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      items: especialidades.map((String esp) {
-                        return DropdownMenuItem<String>(
-                          value: esp,
-                          child: Text(esp),
-                        );
-                      }).toList(),
-
-                      onChanged: (String? novaEsp) {
-                        setState(() {
-                          especialidadeselecionada = novaEsp;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 100, vertical: 10),
-              child: ElevatedButton(
-                onPressed: () {
-                  loadData(estadoselecionado!, especialidadeselecionada!);
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Colors.blue,
-                ),
-                child: const Text('PESQUISAR'),
-              ),
-            ),
-
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: listaMedicos.length,
-              itemBuilder: (context, i) {
-                return buildMedico(listaMedicos[i]);
-              },
-            )
-
-          ],
-        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                                ClipRRect(
+                                child: Image.asset('assets/iconDoctor.png',
+                                  width: 100,),
+                            borderRadius: BorderRadius.circular(1000),
+                          ),
+                              Spacer(),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text('Ary',
+                                    style: GoogleFonts.cairo(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  Text('estado',
+                                    style: GoogleFonts.cairo(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  Text('',
+                                    style: GoogleFonts.cairo(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+        ],
       ),
+                ],
+
+        ),
+        ],
+                ),
+            ),
+        ],
+      ),
+    ],
+    ),
+    ),
     );
   }
 }
@@ -200,7 +103,7 @@ buildAppBar() {
     toolbarHeight: 140,
     centerTitle: true,
     title: Text(
-      'Infoclin',
+      'UTI',
       maxLines: 10,
       style: GoogleFonts.cinzel(
           fontSize: 40, fontWeight: FontWeight.w600, color: Colors.white),
@@ -208,7 +111,9 @@ buildAppBar() {
     backgroundColor: Color(0xFF7cb2d6),
   );
 }
-buildMedico(Medico m){
+
+
+buildMedico(){
   return Container(
       padding:
       EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
@@ -220,43 +125,35 @@ buildMedico(Medico m){
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              ClipRRect(
-                child: Image.asset(m.urlImage,
-                  width: 150,),
-                borderRadius: BorderRadius.circular(1000),
-              ),
               Spacer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(m.nome,
+                  Text('',
                     style: GoogleFonts.cairo(
                         color: Colors.white,
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  Text(m.estado,
+                  Text('',
                     style: GoogleFonts.cairo(
                         color: Colors.white,
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  Text(m.email,
+                  Text('',
                     style: GoogleFonts.cairo(
                         color: Colors.white,
                         fontWeight: FontWeight.bold
                     ),),
                 ],
-              )
-
+              ),
             ],
           ),
-        ],
-      )
-
-  );
+      );
 }
+
+
+
 
 

@@ -4,6 +4,7 @@ import 'package:infoclin_913/enfermariaPage.dart';
 import 'package:infoclin_913/pages/login_page.dart';
 import 'package:infoclin_913/pages/triagemPage.dart';
 import 'package:infoclin_913/pages/uti_page.dart';
+import 'package:infoclin_913/pages/uti_page2.dart';
 
 class TelaMenu extends StatefulWidget {
   const TelaMenu({super.key});
@@ -130,7 +131,7 @@ class _TelaMenu extends State<TelaMenu> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return UTI_page();
+                          return UTI_page2();
                         },
                       ),
                     );
