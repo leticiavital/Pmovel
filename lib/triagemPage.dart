@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:infoclin_913/resultado_triagem_page.dart';
 import 'Domain/triagem.dart';
 import 'dbTriagem/TriagemDAO.dart';
 
@@ -13,11 +13,10 @@ class TriagemPage extends StatefulWidget {
 class _TriagemPageState extends State<TriagemPage> {
   final TextEditingController idadeController = TextEditingController();
   final TextEditingController sexoController = TextEditingController();
-  final TextEditingController cancerController = TextEditingController();
-  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController doencaController = TextEditingController();
 
-  String? respostaCancer;
-  String? sintomaSelecionado; // variável do ComboBox de sintomas
+  String? respostaDoenca;
+  String? sintomaSelecionado;
 
   final List<String> sintomas = [
     'Febre',
@@ -29,15 +28,11 @@ class _TriagemPageState extends State<TriagemPage> {
     'Outro'
   ];
 
-  get dao => null;
-
-  List listaTriagem = [];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: buildappbar(),
+        appBar: buildAppBar(),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
@@ -54,7 +49,8 @@ class _TriagemPageState extends State<TriagemPage> {
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Idade digitada: ${idadeController.text}"),
+                            content:
+                            Text("Idade digitada: ${idadeController.text}"),
                           ),
                         );
                       },
@@ -79,9 +75,9 @@ class _TriagemPageState extends State<TriagemPage> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 30),
 
+                // Título
                 const Text(
                   'INFORMAÇÕES PESSOAIS',
                   style: TextStyle(
@@ -91,9 +87,9 @@ class _TriagemPageState extends State<TriagemPage> {
                     letterSpacing: 1.2,
                   ),
                 ),
-
                 const SizedBox(height: 15),
 
+                // Idade
                 TextField(
                   controller: idadeController,
                   keyboardType: TextInputType.number,
@@ -104,9 +100,9 @@ class _TriagemPageState extends State<TriagemPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 15),
 
+                // Sexo
                 TextField(
                   controller: sexoController,
                   keyboardType: TextInputType.text,
@@ -117,7 +113,6 @@ class _TriagemPageState extends State<TriagemPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 15),
 
                 const Text(
@@ -129,11 +124,10 @@ class _TriagemPageState extends State<TriagemPage> {
                     letterSpacing: 1.2,
                   ),
                 ),
-
                 const SizedBox(height: 15),
 
                 const Text(
-                  'JÁ FOI DIAGNOSTICADO COM CÂNCER ANTERIORMENTE?',
+                  'VOCÊ POSSUI ALGUMA DOENÇA HEREDITÁRIA?',
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
@@ -142,49 +136,37 @@ class _TriagemPageState extends State<TriagemPage> {
                   ),
                 ),
 
+                // Rádio Sim / Não
                 Row(
                   children: [
                     Radio<String>(
                       value: 'Sim',
-                      groupValue: respostaCancer,
+                      groupValue: respostaDoenca,
                       onChanged: (value) {
                         setState(() {
-                          respostaCancer = value;
+                          respostaDoenca = value;
                         });
                       },
                     ),
-                    const Text(
-                      'Sim',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
+                    const Text('Sim', style: TextStyle(fontSize: 15)),
+                    const SizedBox(width: 20),
                     Radio<String>(
                       value: 'Não',
-                      groupValue: respostaCancer,
+                      groupValue: respostaDoenca,
                       onChanged: (value) {
                         setState(() {
-                          respostaCancer = value;
+                          respostaDoenca = value;
                         });
                       },
                     ),
-                    const Text(
-                      'Não',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
+                    const Text('Não', style: TextStyle(fontSize: 15)),
                   ],
                 ),
+                const SizedBox(height: 12),
 
+                // Nome da doença (aparece sempre, mas o valor só é salvo se marcar "Sim")
                 const Text(
-                  'SE A RESPOSTA FOR SIM, DIGITE O NOME: ',
+                  'SE A RESPOSTA FOR SIM, DIGITE O NOME:',
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
@@ -192,14 +174,13 @@ class _TriagemPageState extends State<TriagemPage> {
                     letterSpacing: 1.2,
                   ),
                 ),
-
                 const SizedBox(height: 12),
 
                 TextField(
-                  controller: cancerController,
+                  controller: doencaController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    labelText: "Nome do câncer",
+                    labelText: "Nome da Doença",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -207,6 +188,7 @@ class _TriagemPageState extends State<TriagemPage> {
                 ),
                 const SizedBox(height: 12),
 
+                // Sintoma
                 DropdownButtonFormField<String>(
                   value: sintomaSelecionado,
                   decoration: InputDecoration(
@@ -227,22 +209,43 @@ class _TriagemPageState extends State<TriagemPage> {
                     });
                   },
                 ),
+                const SizedBox(height: 20),
 
-
-                const SizedBox(height: 12),
-
+                // Botão SALVAR
                 Center(
                   child: ElevatedButton(
                     onPressed: () async {
-                      TriagemDao dao = TriagemDao();
+                      if (idadeController.text.isEmpty ||
+                          sexoController.text.isEmpty ||
+                          sintomaSelecionado == null ||
+                          respostaDoenca == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Preencha todos os campos!"),
+                          ),
+                        );
+                        return;
+                      }
+
                       Triagem nova = Triagem(
-                        sexo: sexoController.text,
                         idade: int.tryParse(idadeController.text) ?? 0,
+                        sexo: sexoController.text,
                         sintoma: sintomaSelecionado ?? "",
+                        doencaHereditaria: doencaController.text.isEmpty
+                          ? null
+                          : doencaController.text
                       );
+
+                      TriagemDao dao = TriagemDao();
                       await dao.inserirTriagem(nova);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Triagem salva com sucesso!"),
+                        ),
+                      );
+
                       print(await dao.listarTriagem());
-                      print("Triagem salva no banco!");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
@@ -250,12 +253,22 @@ class _TriagemPageState extends State<TriagemPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
                     ),
                     child: const Text("Salvar"),
                   ),
                 ),
-
+                ElevatedButton(
+                  onPressed: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:
+                        (context) => ResultadoTriagemPage(sintoma: sintomaSelecionado ?? "")
+                    ));
+                  },
+                  child: Text("resultados"),
+                )
               ],
             ),
           ),
@@ -264,16 +277,13 @@ class _TriagemPageState extends State<TriagemPage> {
     );
   }
 
-  buildappbar() {
+  // AppBar
+  AppBar buildAppBar() {
     return AppBar(
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 30.0),
-          child: const Icon(
-            Icons.home,
-            size: 40,
-            color: Colors.white,
-          ),
+          child: const Icon(Icons.home, size: 40, color: Colors.white),
         ),
       ],
       toolbarHeight: 100,

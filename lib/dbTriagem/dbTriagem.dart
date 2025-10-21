@@ -1,4 +1,8 @@
-import 'dart:async';
+import
+
+
+
+'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -22,15 +26,16 @@ class DBHelper {
   Future<void> onCreate(Database db, int version) async {
     String sql = '''CREATE TABLE Triagem(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      sexo TEXT,
       idade INTEGER,
+      sexo TEXT,
+      doencaHeriditaria TEXT, 
       sintoma TEXT
       );''';
 
     await db.execute(sql);
 
     sql =
-    "INSERT INTO Triagem(idade, sexo, sintoma) VALUES (28 ,'Feminino', 'Dor de cabeça');";
+    "INSERT INTO Triagem(idade, sexo, doencaHereditaria, sintoma) VALUES (28 ,'Feminino', null, 'Dor de cabeça');";
     await db.execute(sql);
   }
 

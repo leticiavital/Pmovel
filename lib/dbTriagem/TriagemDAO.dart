@@ -21,10 +21,9 @@ class TriagemDao {
 
   Future<void> inserirTriagem(Triagem t) async {
     Database db = await  DBHelper().initDB();
-    db.insert(
-      'Triagem',
-      t.toJson()
+    await db.insert(
+        'Triagem',
+        t.toJson()
     );
   }
 }
-
