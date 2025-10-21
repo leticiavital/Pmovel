@@ -1,62 +1,34 @@
-class Medico2 {
-  List<Doctors>? doctors;
-  int? page;
-  int? total;
-
-  Medico2({this.doctors, this.page, this.total});
-
-  Medico2.fromJson(Map<String, dynamic> json) {
-    if (json['doctors'] != null) {
-      doctors = <Doctors>[];
-      json['doctors'].forEach((v) {
-        doctors!.add(new Doctors.fromJson(v));
-      });
-    }
-    page = json['page'];
-    total = json['total'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.doctors != null) {
-      data['doctors'] = this.doctors!.map((v) => v.toJson()).toList();
-    }
-    data['page'] = this.page;
-    data['total'] = this.total;
-    return data;
-  }
-}
-
 class Doctors {
-  String? id;
-  int? npi;
-  String? name;
-  String? gender;
-  String? phone;
-  Address? address;
-  List<String>? credentials;
-  List<String>? specialties;
+  late String id;
+  late int npi;
+  late String name;
+  late String gender;
+  late String phone;
+  late Address address;
+  late List<String> credentials;
+  late List<String> specialties;
 
   Doctors(
-      {this.id,
-        this.npi,
+      {required this.id,
+        required this.npi,
         required this.name,
-        this.gender,
-        this.phone,
-        this.address,
-        this.credentials,
-        this.specialties});
+        required this.gender,
+        required this.phone,
+        required this.address,
+        required this.credentials,
+        required this.specialties});
 
   Doctors.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    npi = json['npi'];
-    name = json['name'];
-    gender = json['gender'];
-    phone = json['phone'];
-    address =
-    json['address'] != null ? new Address.fromJson(json['address']) : null;
-    credentials = json['credentials'].cast<String>();
-    specialties = json['specialties'].cast<String>();
+
+
+    id = json['id'] ?? '';
+    npi = json['npi'] ?? '';
+    name = json['name'] ?? '';
+    gender = json['gender'] ?? '';
+    phone = json['phone'] ?? '';
+    address = (json['address'] != null ? new Address.fromJson(json['address']) : null)!;
+    credentials = json['credentials'].cast<String>() ?? '';
+    specialties = json['specialties'].cast<String>() ?? '';
   }
 
   Map<String, dynamic> toJson() {
