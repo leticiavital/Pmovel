@@ -46,6 +46,7 @@ class Doctors {
   }
 }
 
+
 class Address {
   String? line1;
   String? line2;
@@ -58,13 +59,14 @@ class Address {
       {this.line1, this.line2, this.city, this.state, this.country, this.zip});
 
   Address.fromJson(Map<String, dynamic> json) {
-    line1 = json['line1'];
-    line2 = json['line2'];
-    city = json['city'];
-    state = json['state'];
-    country = json['country'];
-    zip = json['zip'];
+    line1 = json['line1'] ?? '';
+    line2 = json['line2'] ?? '';
+    city = json['city'] ?? '';
+    state = json['state'] ?? '';
+    country = json['country'] ?? '';
+    zip = json['zip'] ?? '';
   }
+
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -77,3 +79,4 @@ class Address {
     return data;
   }
 }
+

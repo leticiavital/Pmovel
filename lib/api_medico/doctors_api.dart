@@ -17,7 +17,6 @@ class DoctorsApi {
       list.add(doctors);
     }
 
-
     return list;
   }
 }
