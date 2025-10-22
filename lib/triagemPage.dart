@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'Domain/triagem.dart';
 import 'dbTriagem/TriagemDAO.dart';
+import 'resultado_triagem_page.dart'; // importa a tela de resultado
 
 class TriagemPage extends StatefulWidget {
   const TriagemPage({super.key});
@@ -13,11 +14,10 @@ class TriagemPage extends StatefulWidget {
 class _TriagemPageState extends State<TriagemPage> {
   final TextEditingController idadeController = TextEditingController();
   final TextEditingController sexoController = TextEditingController();
-  final TextEditingController cancerController = TextEditingController();
-  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController nomeDoencaController = TextEditingController();
 
-  String? respostaCancer;
-  String? sintomaSelecionado; // variável do ComboBox de sintomas
+  String? respostaDoenca;
+  String? sintomaSelecionado;
 
   final List<String> sintomas = [
     'Febre',
@@ -28,10 +28,6 @@ class _TriagemPageState extends State<TriagemPage> {
     'Náusea',
     'Outro'
   ];
-
-  get dao => null;
-
-  List listaTriagem = [];
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +75,7 @@ class _TriagemPageState extends State<TriagemPage> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 30),
-
                 const Text(
                   'INFORMAÇÕES PESSOAIS',
                   style: TextStyle(
@@ -91,9 +85,7 @@ class _TriagemPageState extends State<TriagemPage> {
                     letterSpacing: 1.2,
                   ),
                 ),
-
                 const SizedBox(height: 15),
-
                 TextField(
                   controller: idadeController,
                   keyboardType: TextInputType.number,
@@ -104,9 +96,7 @@ class _TriagemPageState extends State<TriagemPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 15),
-
                 TextField(
                   controller: sexoController,
                   keyboardType: TextInputType.text,
@@ -117,9 +107,7 @@ class _TriagemPageState extends State<TriagemPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 15),
-
                 const Text(
                   'HISTÓRICO MÉDICO PESSOAL:',
                   style: TextStyle(
@@ -129,11 +117,9 @@ class _TriagemPageState extends State<TriagemPage> {
                     letterSpacing: 1.2,
                   ),
                 ),
-
                 const SizedBox(height: 15),
-
                 const Text(
-                  'JÁ FOI DIAGNOSTICADO COM CÂNCER ANTERIORMENTE?',
+                  'HÁ HISTÓRICO DE DOENÇA FAMILIAR?',
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
@@ -141,15 +127,14 @@ class _TriagemPageState extends State<TriagemPage> {
                     letterSpacing: 1.2,
                   ),
                 ),
-
                 Row(
                   children: [
                     Radio<String>(
                       value: 'Sim',
-                      groupValue: respostaCancer,
+                      groupValue: respostaDoenca,
                       onChanged: (value) {
                         setState(() {
-                          respostaCancer = value;
+                          respostaDoenca = value;
                         });
                       },
                     ),
@@ -166,10 +151,10 @@ class _TriagemPageState extends State<TriagemPage> {
                   children: [
                     Radio<String>(
                       value: 'Não',
-                      groupValue: respostaCancer,
+                      groupValue: respostaDoenca,
                       onChanged: (value) {
                         setState(() {
-                          respostaCancer = value;
+                          respostaDoenca = value;
                         });
                       },
                     ),
@@ -182,7 +167,6 @@ class _TriagemPageState extends State<TriagemPage> {
                     ),
                   ],
                 ),
-
                 const Text(
                   'SE A RESPOSTA FOR SIM, DIGITE O NOME: ',
                   style: TextStyle(
@@ -192,21 +176,18 @@ class _TriagemPageState extends State<TriagemPage> {
                     letterSpacing: 1.2,
                   ),
                 ),
-
                 const SizedBox(height: 12),
-
                 TextField(
-                  controller: cancerController,
+                  controller: nomeDoencaController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    labelText: "Nome do câncer",
+                    labelText: "Doença",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ),
                 const SizedBox(height: 12),
-
                 DropdownButtonFormField<String>(
                   value: sintomaSelecionado,
                   decoration: InputDecoration(
@@ -227,22 +208,51 @@ class _TriagemPageState extends State<TriagemPage> {
                     });
                   },
                 ),
-
-
                 const SizedBox(height: 12),
 
+                // Botão Salvar atualizado
                 Center(
                   child: ElevatedButton(
                     onPressed: () async {
-                      TriagemDao dao = TriagemDao();
+                      // Validação simples
+                      if (idadeController.text.isEmpty ||
+                          sexoController.text.isEmpty ||
+                          sintomaSelecionado == null ||
+                          respostaDoenca == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Preencha todos os campos!"),
+                          ),
+                        );
+                        return;
+                      }
+
+                      // Criando objeto Triagem com todos os dados
                       Triagem nova = Triagem(
-                        sexo: sexoController.text,
                         idade: int.tryParse(idadeController.text) ?? 0,
+                        sexo: sexoController.text,
                         sintoma: sintomaSelecionado ?? "",
+                        doencaHereditaria: respostaDoenca == "Sim"
+                            ? nomeDoencaController.text
+                            : null
                       );
+
+                      // Inserindo no banco
+                      TriagemDao dao = TriagemDao();
                       await dao.inserirTriagem(nova);
-                      print(await dao.listarTriagem());
-                      print("Triagem salva no banco!");
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Triagem salva com sucesso!"),
+                        ),
+                      );
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResultadoTriagemPage(sintoma: sintomaSelecionado!,),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
@@ -250,12 +260,12 @@ class _TriagemPageState extends State<TriagemPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
                     ),
                     child: const Text("Salvar"),
                   ),
                 ),
-
               ],
             ),
           ),

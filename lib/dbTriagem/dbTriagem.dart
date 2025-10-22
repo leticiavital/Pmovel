@@ -28,7 +28,7 @@ class DBHelper {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       idade INTEGER,
       sexo TEXT,
-      doencaHeriditaria TEXT, 
+      doencaHereditaria TEXT, 
       sintoma TEXT
       );''';
 

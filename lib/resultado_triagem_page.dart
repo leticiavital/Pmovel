@@ -26,7 +26,7 @@ class _ResultadoTriagemPageState extends State<ResultadoTriagemPage> {
 
   Future<void> buscarMedico() async {
     MedicosApi api = MedicosApi();
-    Medico? resultado = await api.buscarMedicoPorSintoma(widget.sintoma);
+    Medico? resultado = await api.buscarMedicoPorSintoma(widget.sintoma.toLowerCase());
     setState(() {
       medico = resultado;
       carregando = false;
