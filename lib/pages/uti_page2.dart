@@ -27,7 +27,9 @@ class _UTI_page2 extends State<UTI_page2> {
       child: Scaffold(
         appBar: buildAppBar(),
         backgroundColor: Color(0xffeff9ff),
-        body: FutureBuilder(
+        body:
+
+        FutureBuilder(
           future: futureDoctors,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -45,6 +47,7 @@ class _UTI_page2 extends State<UTI_page2> {
             return Center(child: CircularProgressIndicator(),);
           },
         ),
+
       ),
     );
   }
@@ -66,11 +69,11 @@ class _UTI_page2 extends State<UTI_page2> {
 
   buildDoctos(Doctors doctors) {
     return Container(
-      padding: EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Color(0xFF031633),
+        color: Colors.blue,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
