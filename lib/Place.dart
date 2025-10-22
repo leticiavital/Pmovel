@@ -7,14 +7,15 @@ class FeaturesCollection {
   FeaturesCollection.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     if (json['features'] != null) {
-      List<Features> features = [];
+      features = [];
       json['features'].forEach((v) {
-        features.add(new Features.fromJson(v));
+        features!.add(Features.fromJson(v));
       });
     }
   }
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['type'] = this.type;
     final features = this.features;
     if (features != null) {
@@ -34,22 +35,18 @@ class Features {
   Features.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     properties = (json['properties'] != null
-        ? new Properties.fromJson(json['properties'])
+        ? Properties.fromJson(json['properties'])
         : null)!;
     geometry = (json['geometry'] != null
-        ? new Geometry.fromJson(json['geometry'])
+        ? Geometry.fromJson(json['geometry'])
         : null)!;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['type'] = this.type;
-    if (this.properties != null) {
-      data['properties'] = this.properties.toJson();
-    }
-    if (this.geometry != null) {
-      data['geometry'] = this.geometry.toJson();
-    }
+    data['properties'] = this.properties.toJson();
+    data['geometry'] = this.geometry.toJson();
     return data;
   }
 }
@@ -83,72 +80,74 @@ class Properties {
   late Facilities facilities;
   late String placeId;
 
-  Properties(
-      {required this.name,
-        required this.country,
-        required this.countryCode,
-        required this.region,
-        required this.state,
-        required this.county,
-        required this.city,
-        required this.municipality,
-        required this.postcode,
-        required this.district,
-        required this.suburb,
-        required this.street,
-        required this.housenumber,
-        required this.iso31662,
-        required this.lon,
-        required this.lat,
-        required this.stateCode,
-        required this.formatted,
-        required this.addressLine1,
-        required this.addressLine2,
-        required this.categories,
-        required this.details,
-        required this.datasource,
-        required this.openingHours,
-        required this.contact,
-        required this.facilities,
-        required this.placeId});
+  Properties({
+    required this.name,
+    required this.country,
+    required this.countryCode,
+    required this.region,
+    required this.state,
+    required this.county,
+    required this.city,
+    required this.municipality,
+    required this.postcode,
+    required this.district,
+    required this.suburb,
+    required this.street,
+    required this.housenumber,
+    required this.iso31662,
+    required this.lon,
+    required this.lat,
+    required this.stateCode,
+    required this.formatted,
+    required this.addressLine1,
+    required this.addressLine2,
+    required this.categories,
+    required this.details,
+    required this.datasource,
+    required this.openingHours,
+    required this.contact,
+    required this.facilities,
+    required this.placeId
+  });
 
   Properties.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    country = json['country'];
-    countryCode = json['country_code'];
-    region = json['region'];
-    state = json['state'];
-    county = json['county'];
-    city = json['city'];
-    municipality = json['municipality'];
-    postcode = json['postcode'];
-    district = json['district'];
-    suburb = json['suburb'];
-    street = json['street'];
-    housenumber = json['housenumber'];
-    iso31662 = json['iso3166_2'];
-    lon = json['lon'];
-    lat = json['lat'];
-    stateCode = json['state_code'];
-    formatted = json['formatted'];
-    addressLine1 = json['address_line1'];
-    addressLine2 = json['address_line2'];
-    categories = json['categories'].cast<String>();
-    details = json['details'].cast<String>();
-    datasource = (json['datasource'] != null
-        ? new Datasource.fromJson(json['datasource'])
-        : null)!;
-    openingHours = json['opening_hours'];
-    contact =
-    (json['contact'] != null ? new Contact.fromJson(json['contact']) : null)!;
-    facilities = (json['facilities'] != null
-        ? new Facilities.fromJson(json['facilities'])
-        : null)!;
-    placeId = json['place_id'];
+    name = json['name'] ?? '';
+    country = json['country'] ?? '';
+    countryCode = json['country_code'] ?? '';
+    region = json['region'] ?? '';
+    state = json['state'] ?? '';
+    county = json['county'] ?? '';
+    city = json['city'] ?? '';
+    municipality = json['municipality'] ?? '';
+    postcode = json['postcode'] ?? '';
+    district = json['district'] ?? '';
+    suburb = json['suburb'] ?? '';
+    street = json['street'] ?? '';
+    housenumber = json['housenumber'] ?? '';
+    iso31662 = json['iso3166_2'] ?? '';
+    lon = json['lon']?.toDouble() ?? 0.0;
+    lat = json['lat']?.toDouble() ?? 0.0;
+    stateCode = json['state_code'] ?? '';
+    formatted = json['formatted'] ?? '';
+    addressLine1 = json['address_line1'] ?? '';
+    addressLine2 = json['address_line2'] ?? '';
+    categories = json['categories'] != null ? List<String>.from(json['categories']) : [];
+    details = json['details'] != null ? List<String>.from(json['details']) : [];
+    datasource = json['datasource'] != null
+        ? Datasource.fromJson(json['datasource'])
+        : Datasource(sourcename: '', attribution: '', license: '', url: '', raw: Raw.empty());
+    openingHours = json['opening_hours'] ?? '';
+    contact = json['contact'] != null
+        ? Contact.fromJson(json['contact'])
+        : Contact(phone: '');
+    facilities = json['facilities'] != null
+        ? Facilities.fromJson(json['facilities'])
+        : Facilities(internetAccess: false);
+    placeId = json['place_id'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['name'] = this.name;
     data['country'] = this.country;
     data['country_code'] = this.countryCode;
@@ -171,16 +170,10 @@ class Properties {
     data['address_line2'] = this.addressLine2;
     data['categories'] = this.categories;
     data['details'] = this.details;
-    if (this.datasource != null) {
-      data['datasource'] = this.datasource.toJson();
-    }
+    data['datasource'] = this.datasource.toJson();
     data['opening_hours'] = this.openingHours;
-    if (this.contact != null) {
-      data['contact'] = this.contact.toJson();
-    }
-    if (this.facilities != null) {
-      data['facilities'] = this.facilities.toJson();
-    }
+    data['contact'] = this.contact.toJson();
+    data['facilities'] = this.facilities.toJson();
     data['place_id'] = this.placeId;
     return data;
   }
@@ -193,26 +186,29 @@ class Datasource {
   late String url;
   late Raw raw;
 
-  Datasource(
-      {required this.sourcename, required this.attribution, required this.license, required this.url, required this.raw});
+  Datasource({
+    required this.sourcename,
+    required this.attribution,
+    required this.license,
+    required this.url,
+    required this.raw
+  });
 
   Datasource.fromJson(Map<String, dynamic> json) {
-    sourcename = json['sourcename'];
-    attribution = json['attribution'];
-    license = json['license'];
-    url = json['url'];
-    raw = (json['raw'] != null ? new Raw.fromJson(json['raw']) : null)!;
+    sourcename = json['sourcename'] ?? '';
+    attribution = json['attribution'] ?? '';
+    license = json['license'] ?? '';
+    url = json['url'] ?? '';
+    raw = json['raw'] != null ? Raw.fromJson(json['raw']) : Raw.empty();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['sourcename'] = this.sourcename;
     data['attribution'] = this.attribution;
     data['license'] = this.license;
     data['url'] = this.url;
-    if (this.raw != null) {
-      data['raw'] = this.raw.toJson();
-    }
+    data['raw'] = this.raw.toJson();
     return data;
   }
 }
@@ -235,45 +231,64 @@ class Raw {
   late int addrPostcode;
   late String healthcareSpeciality;
 
-  Raw(
-      {required this.name,
-        required this.phone,
-        required this.osmId,
-        required this.amenity,
-        required this.osmType,
-        required this.addrStreet,
-        required this.openingHours,
-        required this.internetAccess,
-        required this.addrHousenumber,
-        required this.addrCity,
-        required this.addrState,
-        required this.healthcare,
-        required this.addrSuburb,
-        required this.addrCountry,
-        required this.addrPostcode,
-        required this.healthcareSpeciality});
+  Raw({
+    required this.name,
+    required this.phone,
+    required this.osmId,
+    required this.amenity,
+    required this.osmType,
+    required this.addrStreet,
+    required this.openingHours,
+    required this.internetAccess,
+    required this.addrHousenumber,
+    required this.addrCity,
+    required this.addrState,
+    required this.healthcare,
+    required this.addrSuburb,
+    required this.addrCountry,
+    required this.addrPostcode,
+    required this.healthcareSpeciality
+  });
+
+  Raw.empty()
+      : name = '',
+        phone = '',
+        osmId = 0,
+        amenity = '',
+        osmType = '',
+        addrStreet = '',
+        openingHours = '',
+        internetAccess = '',
+        addrHousenumber = 0,
+        addrCity = '',
+        addrState = '',
+        healthcare = '',
+        addrSuburb = '',
+        addrCountry = '',
+        addrPostcode = 0,
+        healthcareSpeciality = '';
 
   Raw.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    phone = json['phone'];
-    osmId = json['osm_id'];
-    amenity = json['amenity'];
-    osmType = json['osm_type'];
-    addrStreet = json['addr:street'];
-    openingHours = json['opening_hours'];
-    internetAccess = json['internet_access'];
-    addrHousenumber = json['addr:housenumber'];
-    addrCity = json['addr:city'];
-    addrState = json['addr:state'];
-    healthcare = json['healthcare'];
-    addrSuburb = json['addr:suburb'];
-    addrCountry = json['addr:country'];
-    addrPostcode = json['addr:postcode'];
-    healthcareSpeciality = json['healthcare:speciality'];
+    name = json['name'] ?? '';
+    phone = json['phone'] ?? '';
+    osmId = json['osm_id'] ?? 0;
+    amenity = json['amenity'] ?? '';
+    osmType = json['osm_type'] ?? '';
+    addrStreet = json['addr:street'] ?? '';
+    openingHours = json['opening_hours'] ?? '';
+    internetAccess = json['internet_access'] ?? '';
+    addrHousenumber = json['addr:housenumber'] ?? 0;
+    addrCity = json['addr:city'] ?? '';
+    addrState = json['addr:state'] ?? '';
+    healthcare = json['healthcare'] ?? '';
+    addrSuburb = json['addr:suburb'] ?? '';
+    addrCountry = json['addr:country'] ?? '';
+    addrPostcode = json['addr:postcode'] ?? 0;
+    healthcareSpeciality = json['healthcare:speciality'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['name'] = this.name;
     data['phone'] = this.phone;
     data['osm_id'] = this.osmId;
@@ -300,11 +315,11 @@ class Contact {
   Contact({required this.phone});
 
   Contact.fromJson(Map<String, dynamic> json) {
-    phone = json['phone'];
+    phone = json['phone'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['phone'] = this.phone;
     return data;
   }
@@ -316,11 +331,11 @@ class Facilities {
   Facilities({required this.internetAccess});
 
   Facilities.fromJson(Map<String, dynamic> json) {
-    internetAccess = json['internet_access'];
+    internetAccess = json['internet_access'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['internet_access'] = this.internetAccess;
     return data;
   }
@@ -333,12 +348,14 @@ class Geometry {
   Geometry({required this.type, required this.coordinates});
 
   Geometry.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    coordinates = json['coordinates'].cast<double>();
+    type = json['type'] ?? '';
+    coordinates = json['coordinates'] != null
+        ? List<double>.from(json['coordinates'].map((x) => x.toDouble()))
+        : [];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['type'] = this.type;
     data['coordinates'] = this.coordinates;
     return data;
