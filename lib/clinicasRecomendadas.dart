@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infoclin_913/api/place_api.dart';
+import 'package:infoclin_913/fake_api.dart';
 
 class Clinicasrecomendadas extends StatefulWidget {
   const Clinicasrecomendadas({super.key});
@@ -10,6 +12,23 @@ class Clinicasrecomendadas extends StatefulWidget {
 }
 
 class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
+  List<String> hospitalNames = [];
+  List<String> clinicasNames = [];
+
+  @override
+  void initState() {
+    loadState();
+    setState(() {
+
+    });
+    super.initState();
+  }
+
+  loadState() async {
+    hospitalNames = await PropertiesApi().findHospitalsByCity("Arapiraca");
+    clinicasNames = await ClinicasApi().findClinicasByCity("Arapiraca");
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,48 +44,38 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
               ),
               padding: EdgeInsets.all(12),
               margin: EdgeInsets.symmetric(vertical: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '',
+              child: ListView.builder(
+                itemCount: hospitalNames.length,
+                itemBuilder: (context, i) {
+                  return Text(
+                    hospitalNames[i],
                     style: GoogleFonts.cairo(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
                     ),
-                  ),
-                  Text('', style: GoogleFonts.cairo(fontSize: 13)),
-                  SizedBox(height: 8),
-
-                  Text(
-                    '',
+                  );
+                },
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Color(0xFFE8F0FE),
+                border: Border.all(color: Color(0xFF4A90E2), width: 1.5),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.all(12),
+              margin: EdgeInsets.symmetric(vertical: 8),
+              child: ListView.builder(
+                itemCount: clinicasNames.length,
+                itemBuilder: (context, i) {
+                  return Text(
+                    clinicasNames[i],
                     style: GoogleFonts.cairo(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
                     ),
-                  ),
-                  Text('', style: GoogleFonts.cairo(fontSize: 13)),
-                  SizedBox(height: 8),
-
-                  Text(
-                    '',
-                    style: GoogleFonts.cairo(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text('', style: GoogleFonts.cairo(fontSize: 13)),
-                  SizedBox(height: 8),
-
-                  Text(
-                    '',
-                    style: GoogleFonts.cairo(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text('', style: GoogleFonts.cairo(fontSize: 13)),
-                ],
+                  );
+                },
               ),
             ),
           ],

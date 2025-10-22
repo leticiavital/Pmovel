@@ -1,116 +1,116 @@
-class Place {
+class FeaturesCollection {
   String? type;
   List<Features>? features;
 
-  Place({this.type, this.features});
+  FeaturesCollection({this.type, this.features});
 
-  Place.fromJson(Map<String, dynamic> json) {
+  FeaturesCollection.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     if (json['features'] != null) {
-      features = <Features>[];
+      List<Features> features = [];
       json['features'].forEach((v) {
-        features!.add(new Features.fromJson(v));
+        features.add(new Features.fromJson(v));
       });
     }
   }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = this.type;
-    if (this.features != null) {
-      data['features'] = this.features!.map((v) => v.toJson()).toList();
+    final features = this.features;
+    if (features != null) {
+      data['features'] = features.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Features {
-  String? type;
-  Properties? properties;
-  Geometry? geometry;
+  late String type;
+  late Properties properties;
+  late Geometry geometry;
 
-  Features({this.type, this.properties, this.geometry});
+  Features({required this.type, required this.properties, required this.geometry});
 
   Features.fromJson(Map<String, dynamic> json) {
     type = json['type'];
-    properties = json['properties'] != null
+    properties = (json['properties'] != null
         ? new Properties.fromJson(json['properties'])
-        : null;
-    geometry = json['geometry'] != null
+        : null)!;
+    geometry = (json['geometry'] != null
         ? new Geometry.fromJson(json['geometry'])
-        : null;
+        : null)!;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = this.type;
     if (this.properties != null) {
-      data['properties'] = this.properties!.toJson();
+      data['properties'] = this.properties.toJson();
     }
     if (this.geometry != null) {
-      data['geometry'] = this.geometry!.toJson();
+      data['geometry'] = this.geometry.toJson();
     }
     return data;
   }
 }
 
 class Properties {
-  String? name;
-  String? country;
-  String? countryCode;
-  String? region;
-  String? state;
-  String? county;
-  String? city;
-  String? municipality;
-  String? postcode;
-  String? district;
-  String? suburb;
-  String? street;
-  String? housenumber;
-  String? iso31662;
-  double? lon;
-  double? lat;
-  String? stateCode;
-  String? formatted;
-  String? addressLine1;
-  String? addressLine2;
-  List<String>? categories;
-  List<String>? details;
-  Datasource? datasource;
-  String? openingHours;
-  Contact? contact;
-  Facilities? facilities;
-  String? placeId;
+  late String name;
+  late String country;
+  late String countryCode;
+  late String region;
+  late String state;
+  late String county;
+  late String city;
+  late String municipality;
+  late String postcode;
+  late String district;
+  late String suburb;
+  late String street;
+  late String housenumber;
+  late String iso31662;
+  late double lon;
+  late double lat;
+  late String stateCode;
+  late String formatted;
+  late String addressLine1;
+  late String addressLine2;
+  late List<String> categories;
+  late List<String> details;
+  late Datasource datasource;
+  late String openingHours;
+  late Contact contact;
+  late Facilities facilities;
+  late String placeId;
 
   Properties(
-      {this.name,
-        this.country,
-        this.countryCode,
-        this.region,
-        this.state,
-        this.county,
-        this.city,
-        this.municipality,
-        this.postcode,
-        this.district,
-        this.suburb,
-        this.street,
-        this.housenumber,
-        this.iso31662,
-        this.lon,
-        this.lat,
-        this.stateCode,
-        this.formatted,
-        this.addressLine1,
-        this.addressLine2,
-        this.categories,
-        this.details,
-        this.datasource,
-        this.openingHours,
-        this.contact,
-        this.facilities,
-        this.placeId});
+      {required this.name,
+        required this.country,
+        required this.countryCode,
+        required this.region,
+        required this.state,
+        required this.county,
+        required this.city,
+        required this.municipality,
+        required this.postcode,
+        required this.district,
+        required this.suburb,
+        required this.street,
+        required this.housenumber,
+        required this.iso31662,
+        required this.lon,
+        required this.lat,
+        required this.stateCode,
+        required this.formatted,
+        required this.addressLine1,
+        required this.addressLine2,
+        required this.categories,
+        required this.details,
+        required this.datasource,
+        required this.openingHours,
+        required this.contact,
+        required this.facilities,
+        required this.placeId});
 
   Properties.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -135,15 +135,15 @@ class Properties {
     addressLine2 = json['address_line2'];
     categories = json['categories'].cast<String>();
     details = json['details'].cast<String>();
-    datasource = json['datasource'] != null
+    datasource = (json['datasource'] != null
         ? new Datasource.fromJson(json['datasource'])
-        : null;
+        : null)!;
     openingHours = json['opening_hours'];
     contact =
-    json['contact'] != null ? new Contact.fromJson(json['contact']) : null;
-    facilities = json['facilities'] != null
+    (json['contact'] != null ? new Contact.fromJson(json['contact']) : null)!;
+    facilities = (json['facilities'] != null
         ? new Facilities.fromJson(json['facilities'])
-        : null;
+        : null)!;
     placeId = json['place_id'];
   }
 
@@ -172,14 +172,14 @@ class Properties {
     data['categories'] = this.categories;
     data['details'] = this.details;
     if (this.datasource != null) {
-      data['datasource'] = this.datasource!.toJson();
+      data['datasource'] = this.datasource.toJson();
     }
     data['opening_hours'] = this.openingHours;
     if (this.contact != null) {
-      data['contact'] = this.contact!.toJson();
+      data['contact'] = this.contact.toJson();
     }
     if (this.facilities != null) {
-      data['facilities'] = this.facilities!.toJson();
+      data['facilities'] = this.facilities.toJson();
     }
     data['place_id'] = this.placeId;
     return data;
@@ -187,21 +187,21 @@ class Properties {
 }
 
 class Datasource {
-  String? sourcename;
-  String? attribution;
-  String? license;
-  String? url;
-  Raw? raw;
+  late String sourcename;
+  late String attribution;
+  late String license;
+  late String url;
+  late Raw raw;
 
   Datasource(
-      {this.sourcename, this.attribution, this.license, this.url, this.raw});
+      {required this.sourcename, required this.attribution, required this.license, required this.url, required this.raw});
 
   Datasource.fromJson(Map<String, dynamic> json) {
     sourcename = json['sourcename'];
     attribution = json['attribution'];
     license = json['license'];
     url = json['url'];
-    raw = json['raw'] != null ? new Raw.fromJson(json['raw']) : null;
+    raw = (json['raw'] != null ? new Raw.fromJson(json['raw']) : null)!;
   }
 
   Map<String, dynamic> toJson() {
@@ -211,47 +211,47 @@ class Datasource {
     data['license'] = this.license;
     data['url'] = this.url;
     if (this.raw != null) {
-      data['raw'] = this.raw!.toJson();
+      data['raw'] = this.raw.toJson();
     }
     return data;
   }
 }
 
 class Raw {
-  String? name;
-  String? phone;
-  int? osmId;
-  String? amenity;
-  String? osmType;
-  String? addrStreet;
-  String? openingHours;
-  String? internetAccess;
-  int? addrHousenumber;
-  String? addrCity;
-  String? addrState;
-  String? healthcare;
-  String? addrSuburb;
-  String? addrCountry;
-  int? addrPostcode;
-  String? healthcareSpeciality;
+  late String name;
+  late String phone;
+  late int osmId;
+  late String amenity;
+  late String osmType;
+  late String addrStreet;
+  late String openingHours;
+  late String internetAccess;
+  late int addrHousenumber;
+  late String addrCity;
+  late String addrState;
+  late String healthcare;
+  late String addrSuburb;
+  late String addrCountry;
+  late int addrPostcode;
+  late String healthcareSpeciality;
 
   Raw(
-      {this.name,
-        this.phone,
-        this.osmId,
-        this.amenity,
-        this.osmType,
-        this.addrStreet,
-        this.openingHours,
-        this.internetAccess,
-        this.addrHousenumber,
-        this.addrCity,
-        this.addrState,
-        this.healthcare,
-        this.addrSuburb,
-        this.addrCountry,
-        this.addrPostcode,
-        this.healthcareSpeciality});
+      {required this.name,
+        required this.phone,
+        required this.osmId,
+        required this.amenity,
+        required this.osmType,
+        required this.addrStreet,
+        required this.openingHours,
+        required this.internetAccess,
+        required this.addrHousenumber,
+        required this.addrCity,
+        required this.addrState,
+        required this.healthcare,
+        required this.addrSuburb,
+        required this.addrCountry,
+        required this.addrPostcode,
+        required this.healthcareSpeciality});
 
   Raw.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -295,9 +295,9 @@ class Raw {
 }
 
 class Contact {
-  String? phone;
+  late String phone;
 
-  Contact({this.phone});
+  Contact({required this.phone});
 
   Contact.fromJson(Map<String, dynamic> json) {
     phone = json['phone'];
@@ -311,9 +311,9 @@ class Contact {
 }
 
 class Facilities {
-  bool? internetAccess;
+  late bool internetAccess;
 
-  Facilities({this.internetAccess});
+  Facilities({required this.internetAccess});
 
   Facilities.fromJson(Map<String, dynamic> json) {
     internetAccess = json['internet_access'];
@@ -327,10 +327,10 @@ class Facilities {
 }
 
 class Geometry {
-  String? type;
-  List<double>? coordinates;
+  late String type;
+  late List<double> coordinates;
 
-  Geometry({this.type, this.coordinates});
+  Geometry({required this.type, required this.coordinates});
 
   Geometry.fromJson(Map<String, dynamic> json) {
     type = json['type'];
