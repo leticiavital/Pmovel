@@ -6,6 +6,6 @@ import 'package:infoclin_913/clinicasRecomendadas.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Clinicasrecomendadas(),
+    home: ClinicasRecomendadas(),
   ),
   );}

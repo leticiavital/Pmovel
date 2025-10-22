@@ -2,32 +2,41 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/api/place_api.dart';
-import 'package:infoclin_913/fake_api.dart';
+
+
+import 'apiFake/fake_api.dart';
+
 
 class Clinicasrecomendadas extends StatefulWidget {
   const Clinicasrecomendadas({super.key});
+
 
   @override
   State<Clinicasrecomendadas> createState() => _ClinicasrecomendadasState();
 }
 
+
 class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
+
+
   List<String> hospitalNames = [];
   List<String> clinicasNames = [];
+
 
   @override
   void initState() {
     loadState();
     setState(() {
-
     });
     super.initState();
   }
+
 
   loadState() async {
     hospitalNames = await PropertiesApi().findHospitalsByCity("Arapiraca");
     clinicasNames = await ClinicasApi().findClinicasByCity("Arapiraca");
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +74,8 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
               ),
               padding: EdgeInsets.all(12),
               margin: EdgeInsets.symmetric(vertical: 8),
+
+
               child: ListView.builder(
                 itemCount: clinicasNames.length,
                 itemBuilder: (context, i) {
@@ -83,6 +94,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
       ),
     );
   }
+
 
   buildappbar() {
     return AppBar(
@@ -119,6 +131,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
               color: Colors.white,
             ),
           ),
+
 
         ],
       ),
