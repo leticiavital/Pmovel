@@ -20,7 +20,6 @@ class Doctors {
 
   Doctors.fromJson(Map<String, dynamic> json) {
 
-
     id = json['id'] ?? '';
     npi = json['npi'] ?? '';
     name = json['name'] ?? '';
