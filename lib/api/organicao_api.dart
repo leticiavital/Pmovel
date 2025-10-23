@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:infoclin_913/Domain/Organizacao.dart';
-import '../Domain/doctors.dart';
+
 
 class OrganicaoApi {
   final dio = Dio();

@@ -65,12 +65,13 @@ class _MedespecialidadesState extends State<Medespecialidades> {
       toolbarHeight: 140,
       centerTitle: true,
       title: Text(
-        'UTI',
+        'Clínicas especializadas',
         style: GoogleFonts.cinzel(
           fontSize: 40,
           fontWeight: FontWeight.w600,
           color: Colors.white,
         ),
+        maxLines: 2,
       ),
       backgroundColor: const Color(0xFF7cb2d6),
     );
