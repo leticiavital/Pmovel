@@ -38,7 +38,7 @@ class _ResultadoTriagemPageState extends State<ResultadoTriagemPage> {
       centerTitle: true,
       backgroundColor: const Color(0xFF7cb2d6),
       title: const Text(
-        'Possíveis casos',
+        'Recomendações',
         style: TextStyle(
           fontSize: 32,
           fontFamily: 'Carrois Gothic SC',

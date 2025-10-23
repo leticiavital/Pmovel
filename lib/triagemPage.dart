@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Domain/triagem.dart';
 import 'dbTriagem/TriagemDAO.dart';
 import 'resultado_triagem_page.dart'; // importa a tela de resultado
+import 'medespecialidades.dart'; // importa a tela de especialidades
 
 class TriagemPage extends StatefulWidget {
   const TriagemPage({super.key});
@@ -138,13 +139,7 @@ class _TriagemPageState extends State<TriagemPage> {
                         });
                       },
                     ),
-                    const Text(
-                      'Sim',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
+                    const Text('Sim', style: TextStyle(fontSize: 15, color: Colors.black)),
                   ],
                 ),
                 Row(
@@ -158,13 +153,7 @@ class _TriagemPageState extends State<TriagemPage> {
                         });
                       },
                     ),
-                    const Text(
-                      'Não',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
+                    const Text('Não', style: TextStyle(fontSize: 15, color: Colors.black)),
                   ],
                 ),
                 const Text(
@@ -210,61 +199,82 @@ class _TriagemPageState extends State<TriagemPage> {
                 ),
                 const SizedBox(height: 12),
 
-                // Botão Salvar atualizado
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      // Validação simples
-                      if (idadeController.text.isEmpty ||
-                          sexoController.text.isEmpty ||
-                          sintomaSelecionado == null ||
-                          respostaDoenca == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Preencha todos os campos!"),
+                // Botões em coluna
+                Column(
+                  children: [
+                    // Botão Salvar (API fake)
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          if (idadeController.text.isEmpty ||
+                              sexoController.text.isEmpty ||
+                              sintomaSelecionado == null ||
+                              respostaDoenca == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Preencha todos os campos!")),
+                            );
+                            return;
+                          }
+
+                          Triagem nova = Triagem(
+                            idade: int.tryParse(idadeController.text) ?? 0,
+                            sexo: sexoController.text,
+                            sintoma: sintomaSelecionado ?? "",
+                            doencaHereditaria: respostaDoenca == "Sim"
+                                ? nomeDoencaController.text
+                                : null,
+                          );
+
+                          TriagemDao dao = TriagemDao();
+                          await dao.inserirTriagem(nova);
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Triagem salva com sucesso!")),
+                          );
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ResultadoTriagemPage(
+                                  sintoma: sintomaSelecionado!),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                        );
-                        return;
-                      }
-
-                      // Criando objeto Triagem com todos os dados
-                      Triagem nova = Triagem(
-                        idade: int.tryParse(idadeController.text) ?? 0,
-                        sexo: sexoController.text,
-                        sintoma: sintomaSelecionado ?? "",
-                        doencaHereditaria: respostaDoenca == "Sim"
-                            ? nomeDoencaController.text
-                            : null
-                      );
-
-                      // Inserindo no banco
-                      TriagemDao dao = TriagemDao();
-                      await dao.inserirTriagem(nova);
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Triagem salva com sucesso!"),
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         ),
-                      );
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResultadoTriagemPage(sintoma: sintomaSelecionado!,),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        child: const Text("Salvar"),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 12),
                     ),
-                    child: const Text("Salvar"),
-                  ),
+                    const SizedBox(height: 12),
+                    // Botão Especialidades (API real)
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Medespecialidades(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        ),
+                        child: const Text("Ir para Especialidades"),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -279,11 +289,7 @@ class _TriagemPageState extends State<TriagemPage> {
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 30.0),
-          child: const Icon(
-            Icons.home,
-            size: 40,
-            color: Colors.white,
-          ),
+          child: const Icon(Icons.home, size: 40, color: Colors.white),
         ),
       ],
       toolbarHeight: 100,

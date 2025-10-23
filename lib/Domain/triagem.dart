@@ -8,7 +8,7 @@ class Triagem {
     required this.idade,
     required this.sexo,
     required this.sintoma,
-    this.doencaHereditaria,
+    required this.doencaHereditaria,
   });
 
   Triagem.fromJson(Map<String, dynamic> json) {
