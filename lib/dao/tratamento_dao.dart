@@ -1,6 +1,5 @@
 import "package:sqflite/sqflite.dart";
-import 'package:infoclin_913/domain/tratamento.dart';
-
+import '../Domain/tratamento.dart';
 import '../database/database_helper.dart';
 
 

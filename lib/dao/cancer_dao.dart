@@ -1,6 +1,5 @@
-
-import "package:infoclin_913/domain/cancer.dart";
 import 'package:sqflite/sqflite.dart';
+import '../Domain/cancer.dart';
 import '../database/database_helper.dart';
 
 class CancerDao {

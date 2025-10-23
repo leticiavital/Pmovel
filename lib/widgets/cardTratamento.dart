@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infoclin_913/domain/tratamento.dart';
+import '../Domain/tratamento.dart';
 
 class CardTratamento extends StatelessWidget {
   final Tratamento tratamento;

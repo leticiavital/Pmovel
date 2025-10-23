@@ -7,7 +7,7 @@ import 'package:infoclin_913/pages/uti_page2.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: UTI_page2(),
+    home: TelaMenu(),
   ),
   );
 }

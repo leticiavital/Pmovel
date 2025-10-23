@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/Domain/doctors.dart';
 import 'package:infoclin_913/api_medico/doctors_api.dart';
+import 'package:infoclin_913/pages/enfermeirosPage.dart';
+import 'package:path/path.dart';
 
 class UTI_page2 extends StatefulWidget {
 
@@ -24,12 +26,11 @@ class _UTI_page2 extends State<UTI_page2> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
+      child:
+      Scaffold(
         appBar: buildAppBar(),
         backgroundColor: Color(0xffeff9ff),
-        body:
-
-        FutureBuilder(
+        body: FutureBuilder(
           future: futureDoctors,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -47,7 +48,6 @@ class _UTI_page2 extends State<UTI_page2> {
             return Center(child: CircularProgressIndicator(),);
           },
         ),
-
       ),
     );
   }
@@ -55,15 +55,15 @@ class _UTI_page2 extends State<UTI_page2> {
 
   buildAppBar() {
     return AppBar(
-      toolbarHeight: 140,
-      centerTitle: true,
-      title: Text(
-        'UTI',
-        maxLines: 10,
-        style: GoogleFonts.cinzel(
-            fontSize: 40, fontWeight: FontWeight.w600, color: Colors.white),
-      ),
-      backgroundColor: Color(0xFF7cb2d6),
+        toolbarHeight: 140,
+        centerTitle: true,
+        backgroundColor: Color(0xFF7cb2d6),
+        title: Text(
+          'UTI',
+          maxLines: 10,
+          style: GoogleFonts.cinzel(
+              fontSize: 40, fontWeight: FontWeight.w600, color: Colors.white),
+        ),
     );
   }
 
@@ -92,9 +92,9 @@ class _UTI_page2 extends State<UTI_page2> {
             doctors.phone,
             style: TextStyle(color: Colors.white),
           ),
-
         ],
       ),
     );
   }
+
 

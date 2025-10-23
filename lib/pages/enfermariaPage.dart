@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:infoclin_913/dao/cancer_dao.dart';
 import 'package:infoclin_913/dao/sintoma_dao.dart';
 import 'package:infoclin_913/dao/tratamento_dao.dart';
-import 'package:infoclin_913/domain/cancer.dart';
-import 'package:infoclin_913/domain/sintoma.dart';
-import 'package:infoclin_913/domain/tratamento.dart';
 import 'package:infoclin_913/widgets/cardCancer.dart';
 import 'package:infoclin_913/widgets/cardSintoma.dart';
 import 'package:infoclin_913/widgets/cardTratamento.dart';
+
+import '../Domain/cancer.dart';
+import '../Domain/sintoma.dart';
+import '../Domain/tratamento.dart';
 
 
 class EnfermariaPage extends StatefulWidget {

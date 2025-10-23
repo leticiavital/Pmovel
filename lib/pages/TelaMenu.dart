@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infoclin_913/enfermariaPage.dart';
+import 'package:infoclin_913/pages/enfermariaPage.dart';
+import 'package:infoclin_913/pages/enfermeirosPage.dart';
 import 'package:infoclin_913/pages/login_page.dart';
 import 'package:infoclin_913/pages/triagemPage.dart';
 import 'package:infoclin_913/pages/uti_page.dart';
@@ -152,6 +153,42 @@ class _TelaMenu extends State<TelaMenu> {
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
+      ]
+      ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/uti.png', width: 100),
+                    const SizedBox(width: 50),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Enfermeirospage();
+                            },
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF7cb2d6),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: const BorderSide(
+                            color: Color(0xFF7CB2D6),
+                            width: 4,
+                          ),
+                        ),
+                        minimumSize: const Size(200, 60),
+                      ),
+                      child: const Text(
+                        'ENFERMEIROS',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+
+
               ],
             ),
 
@@ -169,7 +206,7 @@ class _TelaMenu extends State<TelaMenu> {
             ),
           ],
         ),
-      ),
+    ),
     );
   }
 

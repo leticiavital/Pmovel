@@ -1,5 +1,5 @@
-import 'package:infoclin_913/domain/sintoma.dart';
 import "package:sqflite/sqflite.dart";
+import '../Domain/sintoma.dart';
 import '../database/database_helper.dart';
 
 

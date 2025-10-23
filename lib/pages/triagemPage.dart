@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Domain/triagem.dart';
 import '../dbTriagem/TriagemDAO.dart';
 

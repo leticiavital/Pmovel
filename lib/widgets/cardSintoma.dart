@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infoclin_913/domain/sintoma.dart';
-import 'package:infoclin_913/dao/sintoma_dao.dart';
+import '../Domain/sintoma.dart';
 
 class SintomasCard extends StatefulWidget {
   final Sintoma sintoma;

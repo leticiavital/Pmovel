@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../domain/cancer.dart';
+
+import '../Domain/cancer.dart';
 
 class CardCancer extends StatefulWidget {
   final Cancer cancer;
