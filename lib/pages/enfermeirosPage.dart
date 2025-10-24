@@ -13,8 +13,6 @@ class Enfermeirospage extends StatefulWidget {
 
 class _EnfermeirospageState extends State<Enfermeirospage> {
 
-
-
   late Future<List<Enfermeiros1>> futurelistEnfermeiros;
 
   @override
@@ -68,7 +66,7 @@ buildAppBar() {
     centerTitle: true,
     backgroundColor: Color(0xFF7cb2d6),
     title: Text(
-      'UTI',
+      'ENFERMEIROS',
       maxLines: 10,
       style: GoogleFonts.cinzel(
           fontSize: 40, fontWeight: FontWeight.w600, color: Colors.white),

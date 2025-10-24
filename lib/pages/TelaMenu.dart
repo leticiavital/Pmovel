@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/pages/enfermariaPage.dart';
 import 'package:infoclin_913/pages/enfermeirosPage.dart';
 import 'package:infoclin_913/pages/login_page.dart';
 import 'package:infoclin_913/pages/triagemPage.dart';
-import 'package:infoclin_913/pages/uti_page.dart';
 import 'package:infoclin_913/pages/uti_page2.dart';
 
 class TelaMenu extends StatefulWidget {

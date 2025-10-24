@@ -30,7 +30,9 @@ class _UTI_page2 extends State<UTI_page2> {
       Scaffold(
         appBar: buildAppBar(),
         backgroundColor: Color(0xffeff9ff),
-        body: FutureBuilder(
+        body: Padding(padding: EdgeInsets.all(15),
+        child:
+        FutureBuilder(
           future: futureDoctors,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -49,6 +51,7 @@ class _UTI_page2 extends State<UTI_page2> {
           },
         ),
       ),
+    ),
     );
   }
 }
@@ -58,43 +61,87 @@ class _UTI_page2 extends State<UTI_page2> {
         toolbarHeight: 140,
         centerTitle: true,
         backgroundColor: Color(0xFF7cb2d6),
-        title: Text(
+        title: Column(
+    children: [
+      Text(
           'UTI',
           maxLines: 10,
           style: GoogleFonts.cinzel(
               fontSize: 40, fontWeight: FontWeight.w600, color: Colors.white),
         ),
+      Text('MÉDiCOS',
+      style: GoogleFonts.cinzel(
+          color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 19
+      ),
+      ),
+      ],
+    ),
     );
   }
 
-  buildDoctos(Doctors doctors) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Colors.blue,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            doctors.name,
-            style: TextStyle(color: Colors.white),
+buildDoctos(Doctors doctors) {
+  return Container(
+    decoration: BoxDecoration(
+      color: const Color(0xFFe8f0ff),
+      border: Border.all(color: const Color(0xFF4A90E2), width: 2.5),
+      borderRadius: BorderRadius.circular(40),
+    ),
+    padding: const EdgeInsets.all(12),
+    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(1000),
+          child: Image.asset(
+            'assets/iconDoctor.png',
+            width: 80,
+            height: 80,
+            fit: BoxFit.cover,
           ),
+        ),
+        const SizedBox(width: 20),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                doctors.name,
+                style: GoogleFonts.cairo(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                doctors.phone,
+                style: GoogleFonts.cairo(
+                  color: Colors.black87,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                doctors.specialties.isNotEmpty
+                    ? doctors.specialties.join(", ")
+                    : "Especialidade não informada",
+                style: GoogleFonts.cairo(
+                  color: Color(0xFF0b6cad),
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
-          Text(
-            doctors.gender,
-            style: TextStyle(color: Colors.white),
-          ),
-
-          Text(
-            doctors.phone,
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
-      ),
-    );
-  }
 
 

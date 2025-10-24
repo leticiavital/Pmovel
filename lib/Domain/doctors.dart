@@ -26,8 +26,13 @@ class Doctors {
     gender = json['gender'] ?? '';
     phone = json['phone'] ?? '';
     address = (json['address'] != null ? new Address.fromJson(json['address']) : null)!;
-    credentials = json['credentials'].cast<String>() ?? '';
-    specialties = json['specialties'].cast<String>() ?? '';
+    credentials = (json['credentials'] != null)
+        ? List<String>.from(json['credentials'])
+        : [];
+
+    specialties = (json['specialties'] != null)
+        ? List<String>.from(json['specialties'])
+        : [];
   }
 
   Map<String, dynamic> toJson() {
