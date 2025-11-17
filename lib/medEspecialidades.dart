@@ -31,7 +31,7 @@ class _MedespecialidadesState extends State<Medespecialidades> {
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return const Center(
-                child: Text('❌ Um erro foi encontrado'),
+                child: Text('erro encontrado'),
               );
             }
 
@@ -43,7 +43,7 @@ class _MedespecialidadesState extends State<Medespecialidades> {
 
             if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return const Center(
-                child: Text('Nenhuma especialidade encontrada 😕'),
+                child: Text('Nenhuma especialidade encontrada '),
               );
             }
 
@@ -88,7 +88,7 @@ class _MedespecialidadesState extends State<Medespecialidades> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          Text(A
             organizations.name,
             style: const TextStyle(
               color: Colors.white,
