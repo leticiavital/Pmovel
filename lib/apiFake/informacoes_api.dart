@@ -4,7 +4,7 @@ import 'package:infoclin_913/domain/informacoes.dart';
 class  InformacoesApi{
   final dio = Dio();
   String baseUrl = 'https://my-json-server.typicode.com/mklara912/fake-api-klara1';
-
+//LISTA SENDO CRIADA PELA CLASSE INFORMACOESS DART
   Future<List<Informacoes>> findAll() async {
 
     List<Informacoes> listaInfo = [];

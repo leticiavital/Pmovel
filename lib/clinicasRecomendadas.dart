@@ -14,7 +14,9 @@ class Clinicasrecomendadas extends StatefulWidget {
 }
 
 class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
+  //API REAL LISTA Q GUARDA MINHAS CLINICAS
   late Future<List<Properties>> futureClinicas;
+  //API FAKE LISTA Q GUARDA MINHAS INFORMAÇÕES DAS CLINICAS
   late Future<List<Informacoes>> futureInformacoes;
 
   @override
@@ -25,6 +27,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
 
   void _loadClinicas() {
     setState(() {
+      //LISTA Q CHAMO A MINHA CLASSE Q TEM METODO DE ENC. CID.
       futureClinicas = PropertiesApi().findHospitalsByCity('Arapiraca');
       futureInformacoes = InformacoesApi().findAll();
     });
@@ -39,6 +42,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
     return SafeArea(
       child: Scaffold(
         appBar: _buildAppBar(),
+        //MEU FILTRO BIULDE DE ACORDO COM A LISTA PROPRIETS EM PLACE
         body: FutureBuilder<List<Properties>>(
           future: futureClinicas,
           builder: (context, snapshot) {
@@ -58,14 +62,14 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
             if (snapshot.hasError) {
               return _buildErrorWidget(snapshot.error.toString());
             }
-
+//SE  SNOP ENCONTRAR ALGUM DADO ELE VAI RETORNAR O LISVIU
             if (snapshot.hasData) {
               final properties = snapshot.data!;
               return FutureBuilder<List<Informacoes>>(
                 future: futureInformacoes,
                 builder: (context, infoSnapshot) {
                   if (!infoSnapshot.hasData) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Center(child: CircularProgressIndicator());
                   }
                   final informacoes = infoSnapshot.data!;
                   if (properties.isEmpty) {
@@ -91,7 +95,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
       ),
     );
   }
-
+//CARD Q CRIA O OBJETO CHAMANDO  OS ATRIBUTOS DELE
   Widget _buildPropertyCard(Properties pro, Informacoes info) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

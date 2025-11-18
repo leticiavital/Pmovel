@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:infoclin_913/domain/Place.dart';
 
 class PropertiesApi {
+  //CONECTA API CM DART
   final dio = Dio();
 
   final String apiKey = '07f243df0f3446c49091adafd23d04e0';
@@ -12,11 +13,11 @@ class PropertiesApi {
 
   Future<List<Properties>> findHospitalsByCity(String city) async {
     try {
-      // Construir URL com filtro de localização (círculo de 10 km)
+      // LINK DA API REAL COM A LOC.
       final String url =
           'https://api.geoapify.com/v2/places?'
           'categories=healthcare.hospital&'
-          'filter=circle:$longitude,$latitude,10000&' // raio de 10 km
+          'filter=circle:$longitude,$latitude,10000&'
           'bias=proximity:$longitude,$latitude&'
           'limit=20&'
           'apiKey=$apiKey';
@@ -44,7 +45,7 @@ class PropertiesApi {
                 final municipio = (props.municipality ?? '').toLowerCase().trim();
                 final county = (props.county ?? '').toLowerCase().trim();
                 final formatted = (props.formatted ?? '').toLowerCase();
-
+//FILTO IMPORTANTE P ACEITAR E IDENTIFICAR ARAP PELA API
                 bool isArapiraca = cidade == 'arapiraca' ||
                     municipio == 'arapiraca' ||
                     county == 'arapiraca' ||
