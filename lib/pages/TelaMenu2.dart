@@ -172,53 +172,41 @@ class _TelaMenu2 extends State<TelaMenu2> {
                 ]
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  child:
-                      ElevatedButton(onPressed: (){
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                          return ProfilePage();
-                        }
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/enfermeiros.png', width: 100),
+                  SizedBox(width: 50),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Enfermeirospage();
+                          },
                         ),
-                        );
-                        },
-                        child: Image.asset('assets/enfermeiros.png', width: 100),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return Enfermeirospage();
-                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF7cb2d6),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(
+                          color: Color(0xFF7CB2D6),
+                          width: 4,
+                        ),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF7cb2d6),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(
-                        color: Color(0xFF7CB2D6),
-                        width: 4,
-                      ),
+                      minimumSize: Size(200, 60),
                     ),
-                    minimumSize: Size(200, 60),
+                    child: Text(
+                      'ENFERMEIROS',
+                      style: GoogleFonts.cinzel(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 23),
+                    ),
                   ),
-                  child:  Text(
-                    'ENFERMEIROS',
-                    style: GoogleFonts.cinzel(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 23),
-                  ),
-                ),
-
-
-              ],
+                ]
             ),
             SizedBox(height: 50),
 
