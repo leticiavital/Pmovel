@@ -39,6 +39,7 @@ dependencies:
   path: ^1.9.1
   shared_preferences:
   dio:
+  provider:
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
     - assets/caixinha.png
     - assets/uti.png
     - assets/iconDoctor.png
+    - assets/enfermeiros.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

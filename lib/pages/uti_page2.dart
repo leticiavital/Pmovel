@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/Domain/doctors.dart';
-import 'package:infoclin_913/api_medico/doctors_api.dart';
+import 'package:infoclin_913/apis/doctors_api.dart';
 import 'package:infoclin_913/pages/enfermeirosPage.dart';
 import 'package:path/path.dart';
 

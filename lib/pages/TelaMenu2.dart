@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/pages/enfermariaPage.dart';
 import 'package:infoclin_913/pages/enfermeirosPage.dart';
 import 'package:infoclin_913/pages/login_page.dart';
+import 'package:infoclin_913/pages/profile_page.dart';
 import 'package:infoclin_913/pages/triagemPage.dart';
 import 'package:infoclin_913/pages/uti_page2.dart';
 
@@ -106,8 +107,8 @@ class _TelaMenu2 extends State<TelaMenu2> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/caixinha.png', width: 100),
-                SizedBox(width: 30),
+                Image.asset('assets/caixinha.png', width: 90),
+                SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
@@ -173,8 +174,18 @@ class _TelaMenu2 extends State<TelaMenu2> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/uti.png', width: 100),
-                SizedBox(width: 50),
+                Container(
+                  child:
+                      ElevatedButton(onPressed: (){
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                          return ProfilePage();
+                        }
+                        ),
+                        );
+                        },
+                        child: Image.asset('assets/enfermeiros.png', width: 100),
+                  ),
+                ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -232,6 +243,16 @@ class _TelaMenu2 extends State<TelaMenu2> {
         toolbarHeight: 140,
         centerTitle: true,
         backgroundColor: const Color(0xFF7cb2d6),
+        leading: IconButton(onPressed: (){
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+            return ProfilePage();
+          }
+          ),
+          );
+        }, icon: Icon(Icons.person,
+        size: 45,
+        color: Colors.white,)
+        ),
         title: Text(
             'INFOCLIN',
             style: GoogleFonts.cinzel(
@@ -240,12 +261,16 @@ class _TelaMenu2 extends State<TelaMenu2> {
               fontSize: 40
             ),
         ),
-        actions: [IconButton(onPressed: () {
+        actions: [
+          IconButton(onPressed: () {
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) {
             return LoginPage();
-          },));
-        }, icon: Icon(Icons.logout,
+          },
+          ),
+          );
+          },
+          icon: Icon(Icons.logout,
           size: 35,
           color: Colors.white,
         ),

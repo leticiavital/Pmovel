@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/db/shared_perfs.dart';
 import 'package:infoclin_913/db/usuarios_dao.dart';
 import 'package:infoclin_913/pages/TelaMenu.dart';
+import 'package:infoclin_913/pages/TelaMenu2.dart';
 import 'package:infoclin_913/pages/cadastro_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -101,7 +102,7 @@ class _LoginPage extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return TelaMenu();
+                              return TelaMenu2();
                             },
                           ),
                         );
