@@ -37,6 +37,8 @@ dependencies:
   google_fonts: ^6.2.1
   sqflite:
   dio:
+  google_maps_flutter: ^2.6.1
+  geocoding: ^2.1.0
 
 dev_dependencies:
   flutter_test:

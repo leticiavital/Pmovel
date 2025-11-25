@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/Domain/Organizacao.dart';
 import 'package:infoclin_913/api/organicao_api.dart';
+import 'package:infoclin_913/tela_map.dart';
 
 class Medespecialidades extends StatefulWidget {
   const Medespecialidades({Key? key}) : super(key: key);
@@ -16,7 +17,6 @@ class _MedespecialidadesState extends State<Medespecialidades> {
   @override
   void initState() {
     super.initState();
-    // Chama a API ao iniciar a tela
     futureOrg = OrganicaoApi().findEsp();
   }
 
@@ -30,21 +30,15 @@ class _MedespecialidadesState extends State<Medespecialidades> {
           future: futureOrg,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return const Center(
-                child: Text('erro encontrado'),
-              );
+              return const Center(child: Text('Erro encontrado'));
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
 
             if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(
-                child: Text('Nenhuma especialidade encontrada '),
-              );
+              return const Center(child: Text('Nenhuma especialidade encontrada'));
             }
 
             List<Organizations> organizations = snapshot.data!;
@@ -88,7 +82,7 @@ class _MedespecialidadesState extends State<Medespecialidades> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(A
+          Text(
             organizations.name,
             style: const TextStyle(
               color: Colors.white,
@@ -96,16 +90,19 @@ class _MedespecialidadesState extends State<Medespecialidades> {
               fontWeight: FontWeight.bold,
             ),
           ),
+
           const SizedBox(height: 8),
-          Text(
+
+          const Text(
             "Especialidades:",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white70,
               fontWeight: FontWeight.w600,
             ),
           ),
+
           const SizedBox(height: 6),
-          // Exibe todas as especialidades da organização
+
           Text(
             organizations.specialties.isNotEmpty
                 ? organizations.specialties.join(', ')
@@ -113,6 +110,34 @@ class _MedespecialidadesState extends State<Medespecialidades> {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          Align(
+            alignment: Alignment.centerRight,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => MapScreen(organization: organizations),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+              ),
+              child: const Text(
+                "Ver no mapa",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],
