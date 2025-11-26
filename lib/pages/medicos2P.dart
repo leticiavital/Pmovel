@@ -16,6 +16,10 @@ class _Medicos2pState extends State<Medicos2p> {
   void initState() {
     super.initState();
 
+    /*Future.microtask: é uma forma de adiar a execução de uma função
+    para depois que a tela e o BuildContext estejam prontos.
+    Serve para evita erros ao chamar métodos do Provider no initState(),
+    garantindo que o código seja executado de forma segura logo após a criação do widget.*/
     Future.microtask(() =>
         context.read<DoctorsProvider>().loadDoctors()
     );
@@ -28,18 +32,18 @@ class _Medicos2pState extends State<Medicos2p> {
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(),
-        backgroundColor: const Color(0xffeff9ff),
+        backgroundColor: Color(0xffeff9ff),
         body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: buildBody(provider),
+          padding: EdgeInsets.all(15),
+          child: buildDoctors2(provider),
         ),
       ),
     );
   }
 
-  Widget buildBody(DoctorsProvider provider) {
+  Widget buildDoctors2(DoctorsProvider provider) {
     if (provider.isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(child: CircularProgressIndicator());
     }
 
     if (provider.error != null) {
@@ -87,12 +91,12 @@ buildAppBar() {
 buildDoctos(Doctors doctors) {
   return Container(
     decoration: BoxDecoration(
-      color: const Color(0xFFe8f0ff),
-      border: Border.all(color: const Color(0xFF4A90E2), width: 2.5),
+      color:  Color(0xFFe8f0ff),
+      border: Border.all(color: Color(0xFF4A90E2), width: 2.5),
       borderRadius: BorderRadius.circular(40),
     ),
-    padding: const EdgeInsets.all(12),
-    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+    padding: EdgeInsets.all(12),
+    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -105,7 +109,7 @@ buildDoctos(Doctors doctors) {
             fit: BoxFit.cover,
           ),
         ),
-        const SizedBox(width: 20),
+        SizedBox(width: 20),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +122,7 @@ buildDoctos(Doctors doctors) {
                   fontSize: 18,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Text(
                 doctors.phone,
                 style: GoogleFonts.cairo(
@@ -127,7 +131,7 @@ buildDoctos(Doctors doctors) {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6),
               Text(
                 doctors.specialties.isNotEmpty
                     ? doctors.specialties.join(", ")

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infoclin_913/providers/enfermeiros_provider.dart';
 import 'package:infoclin_913/widgets/CardEnfermeiros.dart';
 import 'package:provider/provider.dart';
-
-import 'enfermeirosPage.dart';
 
 class Enfermeirospage2 extends StatefulWidget {
   @override
@@ -27,16 +26,16 @@ class _Enfermeirospage2State extends State<Enfermeirospage2> {
       child: Scaffold(
         appBar: buildAppBar(),
         body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: buildList(provider),
+          padding: EdgeInsets.all(20),
+          child: buildEnfermeiros1(provider),
         ),
       ),
     );
   }
 
-  Widget buildList(EnfermeirosProvider provider) {
+  Widget buildEnfermeiros1(EnfermeirosProvider provider) {
     if (provider.isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(child: CircularProgressIndicator());
     }
 
     if (provider.error != null) {
@@ -53,3 +52,19 @@ class _Enfermeirospage2State extends State<Enfermeirospage2> {
     );
   }
 }
+
+buildAppBar() {
+  return AppBar(
+    toolbarHeight: 140,
+    centerTitle: true,
+    backgroundColor: Color(0xFF7cb2d6),
+    title: Text(
+      'ENFERMEIROS',
+      maxLines: 10,
+      style: GoogleFonts.cinzel(
+          fontSize: 40, fontWeight: FontWeight.w600, color: Colors.white),
+    ),
+  );
+}
+
+
