@@ -1,72 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:infoclin_913/Api/Saude_api.dart';
-import 'package:infoclin_913/Api/Medicamento_api.dart';
 import 'package:infoclin_913/domain/Saude.dart';
-import 'package:infoclin_913/domain/Medicamentos.dart';
 import 'package:infoclin_913/widgets/cardSaude.dart';
 import 'package:infoclin_913/widgets/cardMedicamentos.dart';
+import 'package:infoclin_913/Provider/medicamento_provider.dart';
 
 
 class infoClinHomePage extends StatefulWidget {
   const infoClinHomePage({super.key});
 
-
   @override
   State<infoClinHomePage> createState() => _infoClinHomePageState();
 }
 
-
 class _infoClinHomePageState extends State<infoClinHomePage> {
-
-
-  int tamanhoListaMedicamentos = 0;
-  List<Medicamento> listaMedicamento = [];
-  bool carregandoMedicamentos = false;
-  String? erroMedicamentos;
-
-
   int tamanhoListaArtigos = 0;
   List<ArtigoSaude> listaArtigos = [];
   bool carregandoArtigos = false;
   String? erroArtigos;
 
-
-  // APIs
-  final MedicamentoApi _medicamentoApi = MedicamentoApi();
+  // API de Saúde
   final SaudeApi _saudeApi = SaudeApi();
-
-
-
-
-
-
-  Future<void> carregarMedicamentos() async {
-    if (listaMedicamento.isEmpty) {
-      setState(() {
-        carregandoMedicamentos = true;
-        erroMedicamentos = null;
-      });
-
-
-      try {
-        listaMedicamento = await _medicamentoApi.listarMedicamentos(limite: 30);
-        setState(() {
-          carregandoMedicamentos = false;
-          tamanhoListaMedicamentos = listaMedicamento.length;
-        });
-      } catch (e) {
-        setState(() {
-          erroMedicamentos = 'Erro ao carregar medicamentos';
-          carregandoMedicamentos = false;
-        });
-      }
-    } else {
-      setState(() {
-        tamanhoListaMedicamentos = tamanhoListaMedicamentos == 0 ? listaMedicamento.length : 0;
-      });
-    }
-  }
-
 
   Future<void> carregarArtigos() async {
     if (listaArtigos.isEmpty) {
@@ -74,7 +29,6 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
         carregandoArtigos = true;
         erroArtigos = null;
       });
-
 
       try {
         listaArtigos = await _saudeApi.listarArtigos();
@@ -94,7 +48,6 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +73,6 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
       ),
     );
   }
-
 
   // Widgets builders
   PreferredSizeWidget _buildAppBar() {
@@ -149,7 +101,6 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
     );
   }
 
-
   Widget _buildHeader(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.6,
@@ -172,7 +123,6 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
     );
   }
 
-
   Widget _buildSubtitle() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -188,7 +138,6 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
       ),
     );
   }
-
 
   Widget _buildLogo() {
     return Image.asset(
@@ -223,10 +172,9 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
     );
   }
 
-
   Widget _buildArtigosButton(BuildContext context) {
     return GestureDetector(
-      onTap: carregandoArtigos ? null : carregarArtigos,
+      onTap: carregarArtigos,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.85,
         decoration: BoxDecoration(
@@ -235,18 +183,7 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
           border: Border.all(color: Color(0xFF87CEEB), width: 3),
         ),
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
-        child: carregandoArtigos
-            ? Center(
-          child: SizedBox(
-            height: 20,
-            width: 20,
-            child: CircularProgressIndicator(
-              color: Color(0xFF87CEEB),
-              strokeWidth: 2,
-            ),
-          ),
-        )
-            : Text(
+        child: Text(
           'ACESSO À SAÚDE',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -259,7 +196,6 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
     );
   }
 
-
   Widget _buildArtigosList() {
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
@@ -271,35 +207,37 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
     );
   }
 
-
   Widget _buildMedicamentosSection(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            'CONSULTE INFORMAÇÕES SOBRE MEDICAMENTOS:',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              height: 1.3,
+    return Consumer<MedicamentoProvider>(
+      builder: (context, medicamentoProvider, child) {
+        return Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'CONSULTE INFORMAÇÕES SOBRE MEDICAMENTOS:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  height: 1.3,
+                ),
+              ),
             ),
-          ),
-        ),
-        SizedBox(height: 20),
-        _buildMedicamentosButton(context),
-        SizedBox(height: 20),
-        _buildMedicamentosList(),
-      ],
+            SizedBox(height: 20),
+            _buildMedicamentosButton(context, medicamentoProvider),
+            SizedBox(height: 20),
+            _buildMedicamentosList(medicamentoProvider),
+          ],
+        );
+      },
     );
   }
 
-
-  Widget _buildMedicamentosButton(BuildContext context) {
+  Widget _buildMedicamentosButton(BuildContext context, MedicamentoProvider provider) {
     return GestureDetector(
-      onTap: carregarMedicamentos, //
+      onTap: () => provider.carregarMedicamentos(),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.85,
         decoration: BoxDecoration(
@@ -322,17 +260,16 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
     );
   }
 
-  Widget _buildMedicamentosList() {
+  Widget _buildMedicamentosList(MedicamentoProvider provider) {
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: tamanhoListaMedicamentos,
+      itemCount: provider.tamanhoLista,
       itemBuilder: (context, i) {
-        return CardMedicamento(medicamento: listaMedicamento[i]);
+        return CardMedicamento(medicamento: provider.listaMedicamentos[i]);
       },
     );
   }
-
 
   Widget _buildFooter() {
     return Column(
@@ -342,8 +279,7 @@ class _infoClinHomePageState extends State<infoClinHomePage> {
           width: 80,
           height: 80,
         ),
-        SizedBox(height: 20
-        ),
+        SizedBox(height: 20),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
