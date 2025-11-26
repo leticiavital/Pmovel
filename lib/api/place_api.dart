@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:infoclin_913/domain/Place.dart';
+import 'package:infoclin_913/Domain/Place.dart';
 
 class PropertiesApi {
   //CONECTA API CM DART

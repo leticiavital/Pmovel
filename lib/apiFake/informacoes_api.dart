@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:infoclin_913/domain/informacoes.dart';
+import 'package:infoclin_913/Domain/informacoes.dart';
 
 class  InformacoesApi{
   final dio = Dio();

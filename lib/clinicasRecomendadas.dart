@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infoclin_913/Domain/Place.dart';
+import 'package:infoclin_913/Domain/informacoes.dart';
+import 'package:infoclin_913/MapScreen.dart';
 import 'package:infoclin_913/api/place_api.dart';
 import 'package:infoclin_913/apiFake/informacoes_api.dart';
-import 'package:infoclin_913/domain/informacoes.dart';
-import 'domain/Place.dart';
+import 'package:geocoding/geocoding.dart';
 import 'dart:math';
+
+// Se você for usar o mapa:
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:geocoding/geocoding.dart';
+// import 'map_screen.dart';
 
 class Clinicasrecomendadas extends StatefulWidget {
   const Clinicasrecomendadas({super.key});
@@ -14,10 +21,8 @@ class Clinicasrecomendadas extends StatefulWidget {
 }
 
 class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
-  //API REAL LISTA Q GUARDA MINHAS CLINICAS
-  late Future<List<Properties>> futureClinicas;
-  //API FAKE LISTA Q GUARDA MINHAS INFORMAÇÕES DAS CLINICAS
-  late Future<List<Informacoes>> futureInformacoes;
+  late Future<List<Properties>> futureClinicas; // API real
+  late Future<List<Informacoes>> futureInformacoes; // API fake
 
   @override
   void initState() {
@@ -27,7 +32,6 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
 
   void _loadClinicas() {
     setState(() {
-      //LISTA Q CHAMO A MINHA CLASSE Q TEM METODO DE ENC. CID.
       futureClinicas = PropertiesApi().findHospitalsByCity('Arapiraca');
       futureInformacoes = InformacoesApi().findAll();
     });
@@ -42,39 +46,29 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
     return SafeArea(
       child: Scaffold(
         appBar: _buildAppBar(),
-        //MEU FILTRO BIULDE DE ACORDO COM A LISTA PROPRIETS EM PLACE
         body: FutureBuilder<List<Properties>>(
           future: futureClinicas,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 16),
-                    Text('Carregando hospitais de Arapiraca...'),
-                  ],
-                ),
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
 
             if (snapshot.hasError) {
               return _buildErrorWidget(snapshot.error.toString());
             }
-//SE  SNOP ENCONTRAR ALGUM DADO ELE VAI RETORNAR O LISVIU
+
             if (snapshot.hasData) {
               final properties = snapshot.data!;
               return FutureBuilder<List<Informacoes>>(
                 future: futureInformacoes,
                 builder: (context, infoSnapshot) {
                   if (!infoSnapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                   final informacoes = infoSnapshot.data!;
-                  if (properties.isEmpty) {
-                    return _buildEmptyWidget();
-                  }
+                  if (properties.isEmpty) return _buildEmptyWidget();
 
                   final length = min(properties.length, informacoes.length);
 
@@ -95,7 +89,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
       ),
     );
   }
-//CARD Q CRIA O OBJETO CHAMANDO  OS ATRIBUTOS DELE
+
   Widget _buildPropertyCard(Properties pro, Informacoes info) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -111,6 +105,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Cabeçalho com ícone e nome
               Row(
                 children: [
                   const Icon(Icons.local_hospital, color: Color(0xFF7cb2d6), size: 28),
@@ -128,17 +123,72 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
                 ],
               ),
               const SizedBox(height: 12),
+              // Endereço
               if (pro.formatted?.isNotEmpty == true)
                 _buildInfoRow(Icons.location_on, pro.formatted!),
               if (pro.addressLine1?.isNotEmpty == true)
                 _buildInfoRow(Icons.location_city, pro.addressLine1!),
               const SizedBox(height: 8),
+              // Botões: Informações e Mapa
               Align(
                 alignment: Alignment.centerRight,
-                child: TextButton.icon(
-                  onPressed: () => _mostrarInfo(info),
-                  icon: const Icon(Icons.info_outline),
-                  label: const Text('Informações para contato'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Botão de informações
+                    TextButton.icon(
+                      onPressed: () => _mostrarInfo(info),
+                      icon: const Icon(Icons.info_outline),
+                      label: const Text('Contato'),
+                    ),
+                    const SizedBox(width: 8),
+                    // Botão de mapa
+                    TextButton.icon(
+                      onPressed: () async {
+                        double latValue = pro.lat;
+                        double lonValue = pro.lon;
+
+                        // Se lat/lon forem 0.0, tenta geocodificar pelo endereço
+                        if ((latValue == 0.0 || lonValue == 0.0) && pro.formatted.isNotEmpty) {
+                          try {
+                            final locations = await locationFromAddress(pro.formatted);
+                            if (locations.isNotEmpty) {
+                              latValue = locations.first.latitude;
+                              lonValue = locations.first.longitude;
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Não foi possível obter a localização')),
+                            );
+                            return;
+                          }
+                        }
+
+                        // Se ainda forem inválidos
+                        if (latValue == 0.0 || lonValue == 0.0) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Localização não encontrada')),
+                          );
+                          return;
+                        }
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => MapScreen(
+                              latitude: latValue,
+                              longitude: lonValue,
+                              title: pro.name.isNotEmpty ? pro.name : 'Clínica',
+                            ),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.map),
+                      label: const Text('Mapa'),
+                    ),
+
+
+                  ],
                 ),
               ),
             ],
@@ -147,6 +197,7 @@ class _ClinicasrecomendadasState extends State<Clinicasrecomendadas> {
       ),
     );
   }
+
 
   Widget _buildInfoRow(IconData icon, String text) {
     return Padding(
