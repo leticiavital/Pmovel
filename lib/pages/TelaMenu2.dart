@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infoclin_913/pages/EnfermeirosPage2.dart';
 import 'package:infoclin_913/pages/enfermariaPage.dart';
 import 'package:infoclin_913/pages/enfermeirosPage.dart';
 import 'package:infoclin_913/pages/login_page.dart';
+import 'package:infoclin_913/pages/medicos2P.dart';
 import 'package:infoclin_913/pages/profile_page.dart';
 import 'package:infoclin_913/pages/triagemPage.dart';
 import 'package:infoclin_913/pages/uti_page2.dart';
@@ -145,7 +147,7 @@ class _TelaMenu2 extends State<TelaMenu2> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return UTI_page2();
+                            return Medicos2p();
                           },
                         ),
                       );
@@ -182,7 +184,7 @@ class _TelaMenu2 extends State<TelaMenu2> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Enfermeirospage();
+                            return Enfermeirospage2();
                           },
                         ),
                       );
