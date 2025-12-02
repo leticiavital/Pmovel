@@ -48,11 +48,14 @@ class _TelaMenu2 extends State<TelaMenu2> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF7cb2d6),
+                    elevation: 8.0,
+                    shadowColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                       side: BorderSide(
                         color: Color(0xFF7CB2D6),
                         width: 4,
+
                       ),
                     ),
                     minimumSize: Size(200, 60),
@@ -63,8 +66,8 @@ class _TelaMenu2 extends State<TelaMenu2> {
                         color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 23),
+
                   ),
-                  //(color: Colors.white, fontSize: 16),
                 ),
               ],
             ),
@@ -86,6 +89,8 @@ class _TelaMenu2 extends State<TelaMenu2> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:  Color(0xFF7cb2d6),
+                    elevation: 8.0,
+                    shadowColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                       side:  BorderSide(
@@ -115,6 +120,8 @@ class _TelaMenu2 extends State<TelaMenu2> {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF7cb2d6),
+                    elevation: 8.0,
+                    shadowColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                       side: BorderSide(
@@ -154,11 +161,13 @@ class _TelaMenu2 extends State<TelaMenu2> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF7cb2d6),
+                      elevation: 8.0,
+                      shadowColor: Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: BorderSide(
-                          color: Color(0xFF7CB2D6),
-                          width: 4,
+                          color: Color(0xFF7cb2d6),
+                          width: 2.5,
                         ),
                       ),
                       minimumSize: Size(200, 60),
@@ -191,6 +200,8 @@ class _TelaMenu2 extends State<TelaMenu2> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF7cb2d6),
+                      elevation: 8.0,
+                      shadowColor: Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: BorderSide(
@@ -231,18 +242,10 @@ class _TelaMenu2 extends State<TelaMenu2> {
     buildappbar() {
       return AppBar(
         toolbarHeight: 140,
+        elevation: 8.0,
+        shadowColor: Colors.black,
         centerTitle: true,
         backgroundColor: const Color(0xFF7cb2d6),
-        leading: IconButton(onPressed: (){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-            return ProfilePage();
-          }
-          ),
-          );
-        }, icon: Icon(Icons.person,
-        size: 45,
-        color: Colors.white,)
-        ),
         title: Text(
             'INFOCLIN',
             style: GoogleFonts.cinzel(

@@ -15,7 +15,6 @@ class _Medicos2pState extends State<Medicos2p> {
   @override
   void initState() {
     super.initState();
-
     /*Future.microtask: é uma forma de adiar a execução de uma função
     para depois que a tela e o BuildContext estejam prontos.
     Serve para evita erros ao chamar métodos do Provider no initState(),
@@ -24,11 +23,9 @@ class _Medicos2pState extends State<Medicos2p> {
         context.read<DoctorsProvider>().loadDoctors()
     );
   }
-
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<DoctorsProvider>();
-
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(),
@@ -40,16 +37,13 @@ class _Medicos2pState extends State<Medicos2p> {
       ),
     );
   }
-
   Widget buildDoctors2(DoctorsProvider provider) {
     if (provider.isLoading) {
       return Center(child: CircularProgressIndicator());
     }
-
     if (provider.error != null) {
       return Center(child: Text(provider.error!));
     }
-
     return ListView.builder(
       itemCount: provider.doctors.length,
       itemBuilder: (context, index) {
@@ -58,7 +52,6 @@ class _Medicos2pState extends State<Medicos2p> {
     );
   }
 }
-
 buildAppBar() {
   return AppBar(
     toolbarHeight: 140,
