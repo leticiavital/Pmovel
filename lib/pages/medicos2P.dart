@@ -25,7 +25,9 @@ class _Medicos2pState extends State<Medicos2p> {
   }
   @override
   Widget build(BuildContext context) {
+
     final provider = context.watch<DoctorsProvider>();
+
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(),
@@ -37,7 +39,8 @@ class _Medicos2pState extends State<Medicos2p> {
       ),
     );
   }
-  Widget buildDoctors2(DoctorsProvider provider) {
+
+  buildDoctors2(DoctorsProvider provider) {
     if (provider.isLoading) {
       return Center(child: CircularProgressIndicator());
     }
@@ -99,7 +102,6 @@ buildDoctos(Doctors doctors) {
             'assets/iconDoctor.png',
             width: 80,
             height: 80,
-            fit: BoxFit.cover,
           ),
         ),
         SizedBox(width: 20),
