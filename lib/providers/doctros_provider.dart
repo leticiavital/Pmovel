@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infoclin_913/apis/doctors_api.dart';
 import 'package:infoclin_913/Domain/doctors.dart';
 
-class DoctorsProvider extends ChangeNotifier {
+class DoctorsProvider extends ChangeNotifier { // --> gerencia o estado e manda notificações
   List<Doctors> doctors = [];
   bool isLoading = false;
   String? error;

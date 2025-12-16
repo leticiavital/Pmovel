@@ -33,7 +33,7 @@ class _Enfermeirospage2State extends State<Enfermeirospage2> {
     );
   }
 
-  Widget buildEnfermeiros1(EnfermeirosProvider provider) {
+  buildEnfermeiros1(EnfermeirosProvider provider) {
     if (provider.isLoading) {
       return Center(child: CircularProgressIndicator());
     }
